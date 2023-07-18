@@ -1284,7 +1284,7 @@ FUNCTION {format.chapter.pages}
             { "" }
             {
               is.kanji.entry
-                { "章" }
+                { "chapter" }
                 { "chapter" }
               if$
             }
