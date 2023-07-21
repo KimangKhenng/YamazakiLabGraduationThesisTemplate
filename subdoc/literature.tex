@@ -57,9 +57,13 @@ algorithms were proposed~\cite{peng2021learning, yang2018mean, johanson2021emerg
 Reinforcement Learning (RL) algorithms can be broadly categorized into two main classes: model-free and model-based approaches. Each class has several sub-branches that address specific challenges and requirements in different problem domains.
 
 \subsection{Model-Free Reinforcement Learning}\label{subsec:model-free-reinforcement-learning}
+Model-free reinforcement learning (RL) is a type of reinforcement learning approach where an agent learns to make decisions and take actions in an environment without explicitly building a model of the environment. In traditional RL, an agent typically constructs a model that represents the transition dynamics and rewards of the environment. This model helps the agent to simulate and plan future actions to make decisions. However, in model-free RL, the agent directly learns from experience through trial and error without explicitly constructing a model.
 
-Model-free RL algorithms learn directly from experience without building an explicit model of the environment's dynamics.
+In model-free RL, the agent interacts with the environment over multiple episodes or time steps, and it receives feedback in the form of rewards based on the actions it takes. The primary goal of the agent is to maximize the total accumulated reward over time. To achieve this, the agent uses different algorithms and techniques to learn the best policy, which is a mapping from states to actions that guides the agent in making decisions.
 
+Model-free RL is particularly useful when the environment is complex, and constructing an accurate model is difficult or computationally expensive.
+Instead of relying on a model, model-free RL agents learn from real interactions with the environment, making them more adaptable and applicable to a broader range of scenarios.
+However, model-free RL also has some challenges. Since it does not use a model, learning can be more sample inefficient~\cite{sutton2018reinforcement}, requiring a large number of interactions with the environment to converge to an optimal policy. Additionally, model-free RL can sometimes struggle with environments that have sparse rewards or deceptive reward structures. Nevertheless, with proper tuning and algorithm selection, model-free RL can be highly effective in a wide range of real-world applications.
 \subsubsection{Q-Learning}\label{subsubsec:q-learning}
 
 Q-learning is a model-free reinforcement learning algorithm that estimates the action-value function \(Q(s, a)\), representing the expected cumulative reward when taking action \(a\) in state \(s\). It is a widely used algorithm for solving Markov Decision Processes (MDPs) without requiring a model of the environment's dynamics.
@@ -184,26 +188,96 @@ Overall, Proximal Policy Optimization (PPO) has become a popular choice for deep
 
 \subsection{Model-Based Reinforcement Learning}
 
-Model-based RL algorithms build an explicit model of the environment's dynamics and use it to plan actions.
+
+
+Model-based reinforcement learning (RL) is an approach where an agent learns and utilizes an explicit model of the environment to make decisions and plan actions.
+Unlike model-free RL, which directly learns from experience without constructing a model, model-based RL involves creating a representation of how the environment behaves, including its transition dynamics and reward function.
+This model is then used to simulate possible trajectories and predict the outcomes of different actions.
+
+The typical process of model-based RL can be summarized as follows:
+
+\begin{itemize}
+    \item \textbf{Model Learning} : The agent collects data by interacting with the environment and observes the outcomes of its actions. It uses this data to build a model of the environment. The model could be in the form of a transition function, which predicts the next state given the current state and action, and a reward function, which estimates the expected reward for a state-action pair.
+    \item \textbf{Planning} : The agent uses its model to simulate possible trajectories and predict the outcomes of different actions. It can perform offline planning to evaluate different sequences of actions and predict the total expected rewards. This process allows the agent to make decisions that are based on the simulations and predictions from the model, rather than relying solely on trial and error in the real environment.
+    \item \textbf{Policy Improvement} : After simulating different trajectories and estimating the rewards, the agent can update its policy to improve decision-making. It can use various optimization algorithms to find a policy that maximizes the expected cumulative reward based on the predictions from the model.
+\end{itemize}
+
+Model-based RL has several advantages:
+
+\begin{itemize}
+    \item \textbf{Sample Efficiency} : Since the agent can simulate interactions with the environment using its model, it can potentially learn more efficiently and require fewer real interactions to find an optimal policy.
+    \item \textbf{Safety} : The agent can use its model to explore the environment safely, avoiding potentially harmful or risky actions by simulating their consequences.
+    \item \textbf{Handling Partial Observability} : Model-based RL can be effective in partially observable environments where the agent does not have access to complete information about the state. The model helps the agent predict the underlying state, improving decision-making.
+\end{itemize}
+
+However, model-based RL also has its challenges:
+
+\begin{itemize}
+    \item \textbf{Model Accuracy} : The success of model-based RL heavily depends on the accuracy of the learned model. If the model is inaccurate, the agent's decisions and predictions can be suboptimal.
+    \item \textbf{Model Complexity} : Constructing an accurate model may be computationally expensive or infeasible in complex environments with large state spaces.
+    \item \textbf{Planning Overhead} : Planning using the model can introduce additional computational overhead, which might limit the real-time applicability of the approach in certain scenarios.
+\end{itemize}
 
 \subsubsection{Dynamic Programming}
-Dynamic Programming is a classical model-based approach that involves solving the Bellman equations iteratively to find the optimal value function and policy.
+
+
+Dynamic programming is a powerful optimization technique used in computer science and mathematics to solve problems by breaking them down into smaller subproblems and solving each subproblem only once. The solutions to these subproblems are stored and reused when needed, which avoids redundant calculations and leads to more efficient computations.
+
+The fundamental idea behind dynamic programming is to divide a complex problem into smaller, overlapping subproblems and solve each subproblem just once, storing its solution in a table or array. Then, the solution to the original problem is constructed by combining the solutions of the subproblems.
+
+The process of dynamic programming can be described by the following steps:
+
+\begin{itemize}
+    \item \textbf{Define the Recurrence Relation} : Express the solution to a larger problem in terms of the solutions to its subproblems. This recursive relationship defines the optimal value of the larger problem based on the optimal values of its subproblems.
+    \item \textbf{Identify Overlapping Subproblems} : Analyze the problem to identify if there are any overlapping subproblems, i.e., if the same subproblems are solved multiple times in the computation. This is the key property that makes dynamic programming effective, as we can avoid redundant computations.
+    \item \textbf{Create a Memoization Table} : Use a data structure, such as an array or a dictionary, to store the solutions of the subproblems as they are computed. This is called memoization, and it helps in efficiently retrieving solutions for previously solved subproblems.
+    \item \textbf{Bottom-Up or Top-Down Approach} : Dynamic programming can be implemented using either a bottom-up or top-down approach.
+    \begin{itemize}
+        \item \textbf{Bottom-Up} : In the bottom-up approach, we start solving the smallest subproblems first and gradually build up to the solution of the original problem.
+        \item \textbf{Top-Down} : In the top-down approach, also known as memoization, we start with the original problem and break it down into smaller subproblems.
+    \end{itemize}
+\end{itemize}
+
+Dynamic programming is widely used in various areas of computer science, such as algorithm design, optimization problems, artificial intelligence, and bioinformatics, to efficiently solve complex problems with overlapping subproblems.
 
 \subsubsection{Monte Carlo Tree Search (MCTS)}
-MCTS is a popular model-based algorithm that uses tree search to explore the state-space and select promising actions.
+Monte Carlo Tree Search (MCTS) is a popular algorithm used in decision-making and game playing problems, particularly in games with large state spaces and complex branching factors. It is commonly applied in artificial intelligence for games like Go, Chess, and other strategic board games. MCTS combines elements of random sampling (Monte Carlo) with tree-based search to efficiently explore the game tree and make informed decisions.
+
+The MCTS algorithm can be explained in the following steps:
+\begin{itemize}
+    \item \textbf{Selection} : Starting from the root of the search tree, the algorithm traverses the tree by selecting child nodes based on a selection policy, often using Upper Confidence Bound (UCB) or variants like UCT (Upper Confidence Bounds for Trees). The selection policy balances between exploring new nodes and exploiting existing knowledge to focus on promising branches.
+    \item \textbf{Expansion} : Once a leaf node (a node with unexplored children) is reached, the algorithm expands the tree by adding child nodes representing possible game moves or actions.
+    \item \textbf{Simulation (Rollout)} : From the newly added child node, the algorithm performs a Monte Carlo simulation (also known as a rollout) by playing the game randomly until a terminal state (end of the game) is reached. The result of the simulation is a reward or utility value representing the outcome of the game from that state.
+    \item \textbf{Backpropagation} : The reward obtained from the simulation is backpropagated up the tree, updating the statistics of each visited node, such as the total reward and the number of visits. This information helps in refining the selection policy and improves the decision-making.
+    \item \textbf{Repeated Iteration}: Steps 1 to 4 are repeated for a certain number of iterations or until a predefined computational budget is reached. The more iterations performed, the more refined the search tree becomes, leading to better decisions.
+\end{itemize}
+
 
 \subsubsection{Model Predictive Control (MPC)}
-MPC is widely used in control systems and robotics. It uses a model of the environment to plan actions over a finite time horizon.
+Model Predictive Control (MPC) is an advanced control strategy used in various engineering fields, such as process control, robotics, and automotive systems. MPC is particularly well-suited for systems with complex dynamics, constraints, and uncertainties. It involves using a model of the system's behavior to predict future states and optimize a control sequence over a finite time horizon. The control sequence is applied to the system, and the process is iterated in a receding horizon fashion, continually updating the control actions based on the most recent measurements and predictions.
 
-\subsection{Hybrid Approaches}
+Here's a detailed explanation of Model Predictive Control:
+\begin{itemize}
+    \item \textbf{Modeling the System} : The first step in MPC is to create a dynamic model of the system being controlled. This model should accurately represent the system's behavior and dynamics. Depending on the complexity of the system and the available information, the model can be a physics-based model, an empirical model, or even a data-driven model based on machine learning techniques.
+    \item \textbf{Prediction Horizon} : MPC works by optimizing a control sequence over a finite prediction horizon, which is a predetermined time interval into the future. The length of the prediction horizon determines how far into the future the control actions are computed. Longer prediction horizons can provide better performance, but they also increase the computational burden.
+    \item \textbf{Optimization Objective} : The main objective of MPC is to optimize a cost function over the prediction horizon. The cost function is a measure of how well the system performs, and it typically includes components related to control effort, desired setpoints, and constraints. By minimizing or maximizing the cost function, MPC finds the optimal control sequence that achieves the desired control objectives.
+    \item \textbf{Constraints} : MPC can handle both hard and soft constraints on the system's states and inputs. Hard constraints are strict limits that cannot be violated, while soft constraints are desired limits that can be violated if necessary. MPC can also handle probabilistic constraints, which are constraints that must be satisfied with a certain probability.
+    \item \textbf{Receding Horizon Control} : Once the optimal control sequence is computed, only the first control action is applied to the system. The process is then repeated, with the optimization being performed again using the most recent measurements and predictions. This is called receding horizon control, as the optimization horizon keeps receding into the future.
+    \item \textbf{Real-Time Implementation} : MPC is typically implemented in real-time using a digital computer. The optimization problem is solved at each time step, and the first control action is applied to the system. The process is repeated at the next time step, and so on. The real-time implementation of MPC requires fast and efficient algorithms to solve the optimization problem.
+    \item \textbf{Robustness and Adaptation} : MPC is inherently robust to disturbances and uncertainties, as it continually updates the control actions based on the most recent measurements and predictions. MPC can also be extended to handle model uncertainties and unmodeled dynamics by using adaptive MPC techniques.
+\end{itemize}
 
-Hybrid RL algorithms combine elements of both model-free and model-based methods to exploit their respective advantages.
+MPC is widely used in industrial automation, autonomous systems, power systems, and various other applications where precise control and handling of complex dynamics and constraints are essential. It provides robust and adaptive control, making it a valuable tool in controlling complex systems in real-world scenarios.
 
-\subsubsection{Model-Based Reinforcement Learning with Value Functions}
-Some approaches use a learned value function in combination with a model to improve sample efficiency and planning.
-
-\subsubsection{Model-Free Methods with Model-Based Initialization}
-In some cases, model-free algorithms are initialized with a learned model, which helps speed up convergence.
+%\subsection{Hybrid Approaches}
+%
+%Hybrid RL algorithms combine elements of both model-free and model-based methods to exploit their respective advantages.
+%
+%\subsubsection{Model-Based Reinforcement Learning with Value Functions}
+%Some approaches use a learned value function in combination with a model to improve sample efficiency and planning.
+%
+%\subsubsection{Model-Free Methods with Model-Based Initialization}
+%In some cases, model-free algorithms are initialized with a learned model, which helps speed up convergence.
 \section{Single Agent Reinforcement Learning}\label{sec:single-agent-reinforcement-learning}
 \paragraph Single-agent RL algorithms are designed to solve problems where there is only one agent interacting with the environment.
 There are advantages and disadvantages to using single-agent RL algorithms in autonomous driving applications:

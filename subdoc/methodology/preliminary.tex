@@ -1,17 +1,3 @@
-\chapter{Methodology}\label{ch:methodology}
-
-\section{Research Design}\label{sec:research-design}
-\paragraph Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-\section{Data and Simulator Choices}\label{sec:data-and-simulator-choices}
-\paragraph Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
 \section{Preliminary}\label{sec:preliminary}
 \subsection{Markov Decision Process}\label{subsec:markov-decision-process}
 \paragraph A Markov decision process (MDP) is a tuple $(S, A, P, R, \gamma)$, where: $S$ is a set of states. $A$ is a set of actions. $P(s'|s, a)$ is the probability of transitioning from state $s$ to state $s'$ when action $a$ is taken.
@@ -122,3 +108,29 @@ This can be achieved by directly using the sampled values as the actions.
 The $\alpha$ and $\beta$ values can be interpreted as counts of successes and failures, respectively.
 Specifically, if $\alpha > 1$ and $\beta > 1$, then $\alpha - 1$ and $\beta - 1$ can be thought of as the number of successes and failures, respectively.
 This interpretation is useful when modeling probabilities or proportions in the context of the policy gradient method.
+
+\section{Beta Policy}\label{sec:beta-policy}
+\paragraph We propose a straightforward neural network architecture, specifically a Multilayer Perceptron (MLP), with 2 hidden layers each having a size of 256 neurons. This neural network is then divided into two separate channels, each having a hidden layer with 256 neurons. These channels are designed to predict values for steering angle and acceleration, respectively, in order to control the vehicle.
+
+The implementation of the neural network is carried out using PyTorch~\cite{paszke2019pytorch}, a popular deep learning library. The input to the network consists of ego states, which include relevant information about the vehicle in relation to its environment, such as velocity, checkpoint positions, time, and distance to the destination. Additionally, LiDAR data from the left, right, and front sides of the vehicle is collected and fed into the network. LiDAR is a sensing technology used in many autonomous vehicles, and its utilization allows the proposed algorithm to be easily adapted and applied in real-world scenarios.
+
+The proposed neural network architecture employs an MLP with two hidden layers, each with 256 neurons. It is divided into two channels for predicting steering angle and acceleration values, respectively. The input includes ego states and LiDAR data, making it suitable for controlling the vehicle in an autonomous driving context. The implementation is carried out using PyTorch, a popular deep learning framework known for its efficiency and flexibility.
+\begin{figure}
+    \centering
+    \includegraphics[width=12cm]{assets/beta_policy}
+    \caption{Beta Policy}\label{fig:figure3}
+\end{figure}
+
+The final layer that output these values uses softplus
+activation function and 1 is added to make sure that the output
+is always positive. The final layer is $f(x) = 1 + \log (1 +
+e^x)$ . As the environment accepts action with $a = [sa,acc]^T=[-1,1]^2$, the output from Beta's PDF is then mapped with the following equation:
+\begin{equation}
+    sa = 2h(\beta_{sa}, \alpha_{sa}) - 1\label{eq:equation5}
+\end{equation}
+\begin{equation}
+    acc = 2h(\beta_{acc}, \alpha_{acc}) - 1\label{eq:equation6}
+\end{equation}
+
+where $h(\beta, \alpha)$ is the mean of the Beta distribution with parameters $\beta$ and $\alpha$, $sa$ stands for steering angle, and $acc$ stands for acceleration.
+It should be noted that we only consider the case where $\alpha > 1$ and $\beta > 1$.
