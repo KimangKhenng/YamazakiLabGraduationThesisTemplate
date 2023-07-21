@@ -14,7 +14,13 @@ It was popularised in the 1960s with the release of Letraset sheets containing L
 
 \section{Preliminary}\label{sec:preliminary}
 \subsection{Markov Decision Process}\label{subsec:markov-decision-process}
-\paragraph Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+\paragraph A Markov decision process (MDP) is a tuple $(S, A, P, R, \gamma)$, where: $S$ is a set of states. $A$ is a set of actions. $P(s'|s, a)$ is the probability of transitioning from state $s$ to state $s'$ when action $a$ is taken.
+$R(s, a)$ is the reward received when taking action $a$ in state $s$. $\gamma \in [0, 1)$ is a discount factor that determines the importance of future rewards.
+The MDP definition can be interpreted as follows:
+\begin{itemize}
+    \item The state $s$ represents the current state of the environment.
+    \item The action $a$ represents the agent's decision in the current state.
+    \item The transition probability $P(s'|s, a)$ represents the probability of the environment transitioning to state $s'$ after the agent takes action $a$ in state $s$.
+    \item The reward $R(s, a)$ represents the amount of reward the agent receives after taking action $a$ in state $s$.
+    \item The discount factor $\gamma$ represents how much the agent values future rewards relative to immediate rewards.
+\end{itemize}

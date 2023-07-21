@@ -1,6 +1,233 @@
 \chapter{Literature Review}\label{ch:literature-review}
+\section{Reinforcement Learning in Traffic Intersection}\label{sec:reinforcement-learning-in-traffic-intersection}
+\paragraph RL has shown great promise in enabling vehicles to make intelligent decisions on the road.
+RL algorithms allow autonomous vehicles to learn from their interactions with the environment, such as other vehicles, pedestrians, traffic lights, and road conditions. This learning process helps the vehicles adapt to changing situations and make appropriate decisions in real-time.
 
-\paragraph Lorem Ipsum is simply dummy text of the printing and typesetting industry~\cite{capasso2021endtoend}.
-Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-It was popularised in the 1960s with the release of~\cite{terry2020pettingzoo} Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+One of the significant advantages of RL in autonomous driving is its ability to handle complex and uncertain environments.
+RL agents can navigate through various traffic scenarios, including intersections, merging lanes, and lane-changing maneuvers, by learning optimal policies based on trial and error. RL also allows autonomous vehicles to adapt to diverse driving conditions, such as different weather conditions and traffic patterns.
+
+Applications of RL in autonomous driving include:
+\begin{itemize}
+    \item Trajectory Planning: RL can be used to plan safe and efficient trajectories for autonomous vehicles, considering various factors such as traffic density, speed limits, and road conditions.
+    \item Behavior Prediction: RL algorithms can predict the behavior of other road users, such as pedestrians and human-driven vehicles, to anticipate their actions and plan accordingly.
+    \item Lane Keeping and Lane Changing: RL can help autonomous vehicles maintain their lane position and make safe lane-changing maneuvers based on surrounding traffic.
+    \item Intersection Negotiation: As seen in the context of this study, RL is applied to enable autonomous vehicles to negotiate intersections effectively, making decisions on when to yield or proceed.
+    \item Optimizing Energy Efficiency: RL can be used to optimize the energy consumption of autonomous vehicles, leading to longer battery life and reduced carbon emissions.
+    \item Traffic Flow Optimization: RL can be employed to optimize traffic flow and reduce congestion in urban environments, improving overall transportation efficiency.
+    \item Autonomous Parking: RL can be used to enable autonomous vehicles to park themselves in parking lots or on the street.
+\end{itemize}
+The use of RL in autonomous driving continues to evolve rapidly, with ongoing research and development focusing on improving safety, efficiency, and adaptability.
+As autonomous driving technology matures, RL is expected to play a crucial role in enhancing the capabilities of autonomous vehicles and making them more reliable and intelligent on the road.
+Many works try to improve transportation safety and
+efficiency at the intersection by integrating various RL
+techniques such as intelligent traffic light (sometimes known
+as adaptive signal control)~\cite{yang2022inductive, wang2021adaptive, essa2020selflearning}.
+However, as
+autonomous vehicles (AV) are gaining ground, problems
+arose as AV had difficulty trying to recognize the state of
+traffic signal in occluded situation [18].
+AV can also rely on
+other data such as Lidar points, and other sensors to navigate
+through the intersection which renders the adaptive signal
+control unsuitable for Avs.
+Another approach was to place an
+intersection controller (IC) somewhere at the center of the
+intersection.
+The IC relies on various data such as video
+footage and lane detectors to coordinate vehicle movement.
+AVs need to request passage to the IC in a similar fashion to
+air traffic control~\cite{li2021planning, gunarathna2022intelligent, qian2017autonomous, chen2019intersection}.
+As the solution becomes more
+complex, the infrastructure cost also increased which makes
+the situation only available in big city.
+RL brings promising
+solutions to solve control problems in this ever-growing big-
+data community.
+Typically, RL algorithms are divided into 2
+schools of thought — model-free and mode-based [23].
+Model-based can be thought of when the agent has a complete
+understanding of the environment which means the action
+taken by the action guarantee the next state transition.
+However, most world problems evolve round uncertainty
+where agents often have incomplete view of the environment.
+As agents interaction became inevitable, several MARL
+algorithms were proposed~\cite{peng2021learning, yang2018mean, johanson2021emergent, tang2020towards, oroojlooyjadid2019review, siekmann1998agent, zhou2020smarts, zhang2019multiagent}.
+\section{Reinforcement Learning Algorithms}
+
+Reinforcement Learning (RL) algorithms can be broadly categorized into two main classes: model-free and model-based approaches. Each class has several sub-branches that address specific challenges and requirements in different problem domains.
+
+\subsection{Model-Free Reinforcement Learning}\label{subsec:model-free-reinforcement-learning}
+
+Model-free RL algorithms learn directly from experience without building an explicit model of the environment's dynamics.
+
+\subsubsection{Q-Learning}\label{subsubsec:q-learning}
+
+Q-learning is a model-free reinforcement learning algorithm that estimates the action-value function \(Q(s, a)\), representing the expected cumulative reward when taking action \(a\) in state \(s\). It is a widely used algorithm for solving Markov Decision Processes (MDPs) without requiring a model of the environment's dynamics.
+
+The Q-value is updated iteratively using the Bellman equation:
+
+\[Q(s, a) \leftarrow Q(s, a) + \alpha \left[ r + \gamma \max_{a'} Q(s', a') - Q(s, a) \right]\]
+
+where:
+\(Q(s, a)\) is the Q-value of state-action pair \((s, a)\),
+\(r\) is the immediate reward received after taking action \(a\) in state \(s\),
+\(\alpha\) is the learning rate that controls the step size of updates,
+\(\gamma\) is the discount factor that balances future rewards' importance,
+\(s'\) is the next state reached after taking action \(a\) in state \(s\), and
+\(\max_{a'} Q(s', a')\) represents the maximum Q-value over all possible actions in state \(s'\).
+
+The Q-learning algorithm follows the following steps:
+\begin{enumerate}
+    \item Initialize the Q-values for all state-action pairs to arbitrary values.
+    \item Observe the current state \(s\).
+    \item Select an action \(a\) using an exploration policy, such as \(\epsilon\)-greedy, which balances between exploration and exploitation.
+    \item Execute the selected action \(a\) in the environment.
+    \item Observe the immediate reward \(r\) and the next state \(s'\).
+    \item Update the Q-value for the current state-action pair using the Bellman equation.
+    \item Repeat steps 2 to 6 until convergence or a predefined number of iterations.
+\end{enumerate}
+Q-learning is an off-policy algorithm, meaning that it learns the optimal policy while following a different behavior policy for exploration. The exploration policy allows the agent to explore the environment and learn about different state-action pairs.
+As Q-learning iteratively updates the Q-values, it converges to the optimal action-value function \(Q^*(s, a)\), which represents the maximum expected cumulative reward from each state-action pair under the optimal policy.
+Q-learning is known to be model-free, which means it does not require knowledge of the environment's dynamics or transition probabilities. Instead, it learns from interacting with the environment and experiencing different state-action-reward sequences.
+The Q-learning algorithm is widely used due to its simplicity and ability to handle large state spaces. However, it may suffer from slow convergence in complex environments, and variants like Double Q-learning and Deep Q-Networks (DQNs) have been introduced to address these limitations.
+
+\subsubsection{Deep Q-Networks (DQNs)}
+Deep Q-Networks (DQNs) is a deep learning extension of the Q-learning algorithm. DQNs leverage the power of deep neural networks to approximate the action-value function \(Q(s, a)\) in complex and high-dimensional environments. It was introduced as a breakthrough in combining deep learning and reinforcement learning, particularly in solving Atari 2600 games.
+
+The core idea of DQNs is to use a neural network as a function approximator for the action-value function. The neural network takes the state \(s\) as input and outputs a vector of Q-values, one for each possible action. The action with the highest Q-value is then selected as the agent's action in the given state.
+
+DQNs aim to solve two key challenges in Q-learning:
+\begin{itemize}
+    \item \textbf{Curse of Dimensionality}: In traditional tabular Q-learning, the size of the Q-table grows exponentially with the number of states and actions, making it infeasible for large state spaces. DQNs address this issue by using a neural network to generalize across states and actions.
+    \item \textbf{High-Dimensional Inputs}: Many real-world environments have high-dimensional state spaces, such as images in computer vision tasks. DQNs can handle these inputs by using convolutional neural networks (CNNs) as the function approximator.
+\end{itemize}
+
+The DQN algorithm follows these main steps:
+
+1.
+\textbf{Experience Replay}: DQNs use an experience replay buffer to store transitions (state, action, reward, next state) experienced by the agent. This buffer helps decorrelate experiences and reduce the correlation between consecutive updates, leading to more stable training.
+
+2.
+\textbf{Target Network}: To stabilize the learning process, DQNs use a separate target network with fixed parameters to generate the target Q-values during the update step. The target network's parameters are updated periodically to match the primary Q-network.
+
+3.
+\textbf{Loss Function}: The DQN loss function is the mean squared error between the predicted Q-values and the target Q-values, given by the Bellman equation:
+
+\[Loss = \frac{1}{N} \sum_{i}(Q(s_i, a_i) - (r_i + \gamma \max_{a'}Q_{\text{target}}(s'_i, a')))^2\]
+
+where \(N\) is the batch size, \(Q_{\text{target}}\) represents the target Q-network, and \(\gamma\) is the discount factor.
+
+The DQN algorithm iteratively samples batches of experiences from the replay buffer, computes the loss, and performs stochastic gradient descent to update the primary Q-network's parameters.
+
+DQNs have demonstrated remarkable success in various tasks, including playing Atari games and controlling robotic systems. They can handle high-dimensional inputs and effectively approximate the action-value function in complex environments.
+
+However, DQNs also have some challenges, such as the tendency to overestimate Q-values and difficulties in handling continuous action spaces. Several extensions, such as Double DQNs and Dueling DQNs, have been proposed to address these limitations and further improve performance.
+
+\subsubsection{Policy Gradient Methods}
+Policy Gradient Methods are a class of reinforcement learning algorithms that directly optimize the policy of an agent to maximize the expected cumulative reward. Unlike value-based methods that estimate the action-value function \(Q(s, a)\), policy gradient methods aim to learn the policy \(\pi(a|s)\), which is a mapping from states \(s\) to actions \(a\).
+
+The policy is typically represented as a parametric function, such as a neural network, with trainable parameters \(\theta\). The objective of policy gradient methods is to find the optimal parameters \(\theta^*\) that maximize the expected reward:
+
+\[J(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}} \left[ \sum_{t=0}^{T} \gamma^t r_t \right]\]
+
+where \(J(\theta)\) is the objective function, \(\tau\) is a trajectory (sequence of states, actions, and rewards), \(\pi_{\theta}\) is the policy with parameters \(\theta\), \(r_t\) is the reward at time step \(t\), \(\gamma\) is the discount factor, and \(T\) is the maximum time step in the trajectory.
+
+Policy gradient methods employ gradient ascent to update the policy parameters in the direction that increases the expected reward. The policy gradient is computed using the likelihood ratio trick:
+
+\[\nabla_{\theta} J(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \left( \sum_{t'=t}^{T} \gamma^{t'-t} r_{t'} \right) \right]\]
+
+This gradient can be estimated through sampling by interacting with the environment and collecting trajectories.
+The policy parameters are then updated using stochastic gradient ascent:
+
+\[\theta_{\text{new}} = \theta_{\text{old}} + \alpha \nabla_{\theta} J(\theta)\]
+
+where \(\alpha\) is the learning rate.
+
+Policy gradient methods offer several advantages, such as handling continuous action spaces and directly optimizing the policy without relying on value functions. They are also well-suited for problems with stochastic policies or environments.
+
+However, policy gradient methods can suffer from high variance in the gradient estimates, which can lead to slow convergence. To address this, variance reduction techniques like baseline subtraction and advantage functions are used to stabilize training.
+
+Additionally, modern policy gradient methods, such as Proximal Policy Optimization (PPO) and Trust Region Policy Optimization (TRPO), introduce mechanisms to constrain the policy updates to ensure more stable and controlled learning.
+
+Overall, policy gradient methods have proven to be effective in a wide range of applications, including robotic control, game playing, and natural language processing, where learning directly from high-dimensional observations is crucial.
+
+\subsubsection{Proximal Policy Optimization (PPO)}
+Proximal Policy Optimization (PPO) is a state-of-the-art policy gradient algorithm for reinforcement learning. It addresses the challenges of traditional policy gradient methods, such as high variance and instability, by introducing constraints on policy updates to ensure more stable and controlled learning.
+
+PPO operates by iteratively optimizing a surrogate objective function that approximates the policy's performance while avoiding drastic policy changes that could lead to divergence. The objective function is defined as the clipped surrogate objective:
+
+\[L^{CLIP}(\theta) = \mathbb{E}_{t} \left[ \min \left( \frac{\pi_{\theta}(a_t|s_t)}{\pi_{\theta_{\text{old}}}(a_t|s_t)} A^{\pi_{\theta_{\text{old}}}}(s_t, a_t), \text{clip}\left( \frac{\pi_{\theta}(a_t|s_t)}{\pi_{\theta_{\text{old}}}(a_t|s_t)}, 1-\epsilon, 1+\epsilon \right) A^{\pi_{\theta_{\text{old}}}}(s_t, a_t) \right) \right]\]
+
+where:
+\(\theta\) represents the current policy parameters,
+\(\theta_{\text{old}}\) represents the old policy parameters (used as a reference),
+\(\pi_{\theta}(a_t|s_t)\) is the probability of taking action \(a_t\) in state \(s_t\) under the current policy,
+\(\pi_{\theta_{\text{old}}}(a_t|s_t)\) is the probability of taking action \(a_t\) in state \(s_t\) under the old policy,
+\(A^{\pi_{\theta_{\text{old}}}}(s_t, a_t)\) is the advantage function, representing the advantage of taking action \(a_t\) in state \(s_t\) under the old policy,
+\(\epsilon\) is a hyperparameter that controls the magnitude of the policy change.
+
+The clipped surrogate objective encourages small policy updates by limiting the change in the likelihood ratio between the new and old policies. This constraint prevents the policy from changing too rapidly, which contributes to the algorithm's stability.
+
+The PPO algorithm operates in two phases:
+
+1.
+\textbf{Data Collection}: The agent interacts with the environment to collect trajectories using the current policy \(\pi_{\theta}\).
+
+2.
+\textbf{Policy Update}: The policy parameters \(\theta\) are updated using stochastic gradient ascent to maximize the clipped surrogate objective function \(L^{CLIP}(\theta)\).
+
+PPO's ability to strike a balance between exploration and exploitation makes it effective in a wide range of tasks. The algorithm has been successfully applied to various domains, including robotic control, game playing, and natural language processing.
+
+PPO also offers a robust and efficient solution for parallelizing training across multiple environments, further accelerating learning in complex environments.
+
+Overall, Proximal Policy Optimization (PPO) has become a popular choice for deep reinforcement learning due to its stable performance, ease of implementation, and excellent results across diverse problem domains.
+
+\subsection{Model-Based Reinforcement Learning}
+
+Model-based RL algorithms build an explicit model of the environment's dynamics and use it to plan actions.
+
+\subsubsection{Dynamic Programming}
+Dynamic Programming is a classical model-based approach that involves solving the Bellman equations iteratively to find the optimal value function and policy.
+
+\subsubsection{Monte Carlo Tree Search (MCTS)}
+MCTS is a popular model-based algorithm that uses tree search to explore the state-space and select promising actions.
+
+\subsubsection{Model Predictive Control (MPC)}
+MPC is widely used in control systems and robotics. It uses a model of the environment to plan actions over a finite time horizon.
+
+\subsection{Hybrid Approaches}
+
+Hybrid RL algorithms combine elements of both model-free and model-based methods to exploit their respective advantages.
+
+\subsubsection{Model-Based Reinforcement Learning with Value Functions}
+Some approaches use a learned value function in combination with a model to improve sample efficiency and planning.
+
+\subsubsection{Model-Free Methods with Model-Based Initialization}
+In some cases, model-free algorithms are initialized with a learned model, which helps speed up convergence.
+\section{Single Agent Reinforcement Learning}\label{sec:single-agent-reinforcement-learning}
+\paragraph Single-agent RL algorithms are designed to solve problems where there is only one agent interacting with the environment.
+There are advantages and disadvantages to using single-agent RL algorithms in autonomous driving applications:
+\begin{itemize}
+    \item Simplicity: Single-agent RL is relatively straightforward to implement and understand since there is only one agent interacting with the environment.
+    \item Model-Based Approaches: Model-based RL algorithms can work effectively in environments where the agent has a complete understanding of the environment's dynamics, enabling accurate predictions.
+    \item Sample Efficiency: Single-agent RL algorithms can be more sample-efficient compared to MARL algorithms since they do not involve interactions among multiple agents.
+\end{itemize}
+However, as the number of agents increases, single-agent RL algorithms may struggle to scale effectively, especially when the agents' actions affect each other.
+So we have some disadvantages:
+\begin{itemize}
+    \item Scalability: In complex environments with many agents, single-agent RL algorithms may struggle to scale effectively, especially when the agents' actions affect each other.
+    \item Non-Stationary Environments: Single-agent RL assumes a stationary environment, which may not hold true in dynamic settings with multiple agents.
+\end{itemize}
+\section{Multi-Agent Reinforcement Learning}\label{sec:multi-agent-reinforcement-learning}
+The advantages of MARL in autonomous driving include:
+\begin{itemize}
+    \item Coordination and Cooperation: MARL allows agents to coordinate and cooperate to achieve common goals or address conflicting objectives, making it suitable for problems with multiple agents interacting.
+    \item Dynamic Environments: MARL is well-suited for non-stationary and complex environments, where the behavior of agents affects each other and evolves over time.
+    \item Flexibility: MARL algorithms can handle various scenarios, from collaborative tasks to competitive interactions, making them versatile in real-world settings.
+\end{itemize}
+However, MARL also has some disadvantages:
+\begin{itemize}
+    \item Curse of Dimensionality: As the number of agents increases, the state space grows exponentially, leading to challenges in scalability and computation.
+    \item Communication Overhead: In some MARL algorithms, communication among agents may be required to coordinate actions, introducing additional overhead and complexity.
+    \item Partial Observability: In scenarios where agents have limited visibility of the environment or other agents' states, coordinating effectively becomes more challenging.
+\end{itemize}
