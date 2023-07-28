@@ -15,17 +15,11 @@ Decentralized Partially Observable Markov Decision Processes (Dec-POMDPs) are a 
 \subsubsection*{Elements of Dec-POMDPs:}
 \begin{enumerate}
     \item \textbf{Agents:} Dec-POMDPs involve multiple agents denoted by index $i \in \{1, 2, \ldots, N\}$, each with its own local observation space $O_i$ and action set $A_i$. The agents interact with the environment and communicate with each other to make coordinated decisions.
-
     \item \textbf{States:} The environment's underlying state is not directly observable. Instead, each agent $i$ receives partial, private observations $o_i$ that provide probabilistic information about the true state. The state space is denoted as $S$.
-
     \item \textbf{Observations:} Each agent's observation $o_i$ is a partial and noisy representation of the global state. Observations are generated based on the current state $s$ and the agent's local observation function denoted as $O_i(s)$.
-
     \item \textbf{Actions:} Agents take actions $a_i$ based on their local observations and communication with other agents. The joint action of all agents affects the evolution of the underlying state. The joint action of all agents is denoted as $\mathbf{a} = (a_1, a_2, \ldots, a_N)$.
-
     \item \textbf{Transition Model:} The transition model $P(s' | s, \mathbf{a})$ describes the probability distribution over next states $s'$ given the current state $s$ and joint actions of all agents $\mathbf{a}$.
-
     \item \textbf{Observation Model:} The observation model $P(o_i | s)$ describes the probability distribution over observations $o_i$ given the current state $s$ for agent $i$.
-
     \item \textbf{Global Objective Function:} The goal of the agents is to optimize a global objective function $J(\mathbf{a})$ that captures the overall mission or task. This objective function depends on the collective actions of all agents and may involve cooperation and coordination.
 
 \end{enumerate}
@@ -39,7 +33,7 @@ The Gaussian distribution, also known as the normal distribution, is a continuou
 where $x$ is a random variable, $\mu$ is the mean (expected value), and $\sigma^2$ is the variance.
 
 The Gaussian distribution is symmetric around its mean, and its shape is determined by the variance. When the variance is small, the distribution is more concentrated around the mean, while a larger variance leads to a wider distribution.
-\begin{figure}
+\begin{figure}[!h]
     \centering
     \includegraphics[width=12cm]{assets/normal}
     \caption{Normal Distribution}\label{fig:figure}
@@ -63,7 +57,7 @@ The neural network learns to map states to action means, allowing the agent to a
 
 \subsubsection*{Adjusting Standard Deviation Over Time:}
 During the training process, the standard deviation $\boldsymbol{\sigma}(s; \boldsymbol{\theta})$ can be adjusted over time.
-It is often initialized with some initial value and then decayed towards a minimum value.
+It is often initialized with some initial value and then decayed towards a minimum value~\cite{capasso2021endtoend, sutton2018reinforcement, mnih2015humanlevel}.
 This adjustment allows the agent to explore more at the beginning of training (high uncertainty) and become more confident in its actions as training progresses (low uncertainty).
 
 \subsection{Beta Distribution}\label{subsec:beta-distribution}
@@ -86,7 +80,7 @@ where $\Gamma(\cdot)$ is the gamma function.
 The Beta distribution is asymmetric and its shape is determined by the values of $\alpha$ and $\beta$. When both $\alpha$ and $\beta$ are greater than 1, the distribution is unimodal and skewed.
 The mode of the distribution is at $\frac{\alpha - 1}{\alpha + \beta - 2}$.
 
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width=12cm]{assets/beta}
     \caption{Beta Distribution}\label{fig:figure2}
@@ -100,22 +94,18 @@ To approximate the Beta distribution for policy generation, a neural network is 
 The neural network takes the state $s$ as input and produces the $\alpha$ and $\beta$ values as output.
 These values are then used to define the Beta distribution for sampling actions.
 
-\subsubsection*{Appropriate Mapping for Action Space:}
-Because the accepted action space is within [0, 1], the sampled values from the Beta distribution need to be mapped to this interval.
-This can be achieved by directly using the sampled values as the actions.
-
-\subsubsection*{Interpretation of 1 - Alpha and 1 - Beta:}
+\subsubsection*{Interpretation of 1 - $\alpha$ and 1 - $\beta$:}
 The $\alpha$ and $\beta$ values can be interpreted as counts of successes and failures, respectively.
 Specifically, if $\alpha > 1$ and $\beta > 1$, then $\alpha - 1$ and $\beta - 1$ can be thought of as the number of successes and failures, respectively.
 This interpretation is useful when modeling probabilities or proportions in the context of the policy gradient method.
 
-\section{Beta Policy}\label{sec:beta-policy}
+\subsection{Beta Policy}\label{subsec:beta-policy}
 \paragraph We propose a straightforward neural network architecture, specifically a Multilayer Perceptron (MLP), with 2 hidden layers each having a size of 256 neurons. This neural network is then divided into two separate channels, each having a hidden layer with 256 neurons. These channels are designed to predict values for steering angle and acceleration, respectively, in order to control the vehicle.
 
 The implementation of the neural network is carried out using PyTorch~\cite{paszke2019pytorch}, a popular deep learning library. The input to the network consists of ego states, which include relevant information about the vehicle in relation to its environment, such as velocity, checkpoint positions, time, and distance to the destination. Additionally, LiDAR data from the left, right, and front sides of the vehicle is collected and fed into the network. LiDAR is a sensing technology used in many autonomous vehicles, and its utilization allows the proposed algorithm to be easily adapted and applied in real-world scenarios.
 
 The proposed neural network architecture employs an MLP with two hidden layers, each with 256 neurons. It is divided into two channels for predicting steering angle and acceleration values, respectively. The input includes ego states and LiDAR data, making it suitable for controlling the vehicle in an autonomous driving context. The implementation is carried out using PyTorch, a popular deep learning framework known for its efficiency and flexibility.
-\begin{figure}
+\begin{figure}[h!]
     \centering
     \includegraphics[width=12cm]{assets/beta_policy}
     \caption{Beta Policy}\label{fig:figure3}
@@ -134,3 +124,50 @@ e^x)$ . As the environment accepts action with $a = [sa,acc]^T=[-1,1]^2$, the ou
 
 where $h(\beta, \alpha)$ is the mean of the Beta distribution with parameters $\beta$ and $\alpha$, $sa$ stands for steering angle, and $acc$ stands for acceleration.
 It should be noted that we only consider the case where $\alpha > 1$ and $\beta > 1$.
+
+\subsection{Advantage Function (Experience Sharing)}\label{subsec:advantage-function}
+\paragraph The advantage function is a key component of the policy gradient method.
+It is used to estimate the advantage of taking an action $a$ in state $s$ over taking an action sampled from the policy $\pi$ in state $s$.
+The advantage function is defined as:
+\begin{equation}
+    A^{\pi_{\theta_{k}}}(s_{t},s_{t+1}, A_{j}, A_{j+1}, R_{G}) = R_{G} +  Q(s_{t+1}, A_{j+1}) - Q(s_{t}, A_{j})\label{eq:equation7}
+\end{equation}
+where $R_{G}$ is the global reward defined as $R_{G} = \frac{1}{k} \sum_{k}^{i=0}R_{k} $
+whose $k$ is the individual reward calculated by Monte Carlo Method~\cite{sutton2018reinforcement}. $Q(\star)$ is the critics part which is popularized by Asynchronous Advantage Actor Critic (A3C)~\cite{mnih2016asynchronous} and also adopted by PPO~\cite{schulman2017proximal}
+, $Q(s_{t}, A_{j})$ is the Q-value of taking action $A_{j}$ in state $s_{t}$, and $A_{j+1}$ is the action sampled from the policy $\pi$ in state $s_{t+1}$.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=10cm]{assets/advantage_fun}
+    \caption{$Q$ value Approximator (Critics)}\label{fig:figure4}
+\end{figure}
+
+\subsection{Objective Function}\label{subsec:objective-function}
+\paragraph The objective function is used to optimize the policy parameters $\theta$. The goal of the agent is to maximize the culminative reward over time by updating the parameterized policy with:
+\begin{equation}
+    \theta_{k+1} = \arg\max_{\theta} \frac{1}{|D_{k}|T} \sum_{\tau\in D_{k}}^{} \sum_{t=1}^{T} \min (\frac{\pi_{\theta}(a_{t}|s_{t})}{\pi_{\theta_{k}}(a_{t}|s_{t})} A^{\pi_{\theta_{k}}}, g(\epsilon, A^{\pi_{\theta_{k}}}))\label{eq:equation8}
+\end{equation}
+where $D_{k}$ is the set of trajectories collected by the agent at iteration $k$, $T$ is the length of the trajectory, $\pi_{\theta}$ is the policy parameterized by $\theta$, and $g(\epsilon, A^{\pi_{\theta_{k}}})$ is the clipped surrogate objective function defined as:
+\begin{equation}
+    g(\epsilon, A^{\pi_{\theta_{k}}}) = \begin{cases}
+        (1 + \epsilon) A^{\pi_{\theta_{k}}} & \text{if } A^{\pi_{\theta_{k}}} \geq 0 \\
+        (1 - \epsilon) A^{\pi_{\theta_{k}}} & \text{otherwise}
+    \end{cases}\label{eq:equation9}
+\end{equation}
+
+\subsection{Centralized Training and Decentralized Execution}\label{subsec:centralized-training-and-decentralized-execution}
+CTDE starts with several agents being placed in the
+environment. The agents are allowed to run for several
+predefined steps (2000 timestamps in our case). In the process,
+samples are collected in a rollout buffer, the buffer then
+performs some preprocessing tasks such as arranging data and
+splitting data into experience batches.
+Those baches are then
+fed into the central agent’s actor-critics network to update the
+policy by calculating loss and through back propagation.
+The updated policy is then distributed back to the individual agent.
+The cycle repeats until the reward feedback converges.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=14cm]{assets/clde}
+    \caption{Centralized Training and Decentralized Execution}\label{fig:figure5}
+\end{figure}

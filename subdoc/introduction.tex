@@ -12,7 +12,7 @@ In the context of autonomous vehicles navigating intersections, agents must acqu
 They should be capable of adapting their behavior to be either collaborative, cooperative, or competitive, depending on the situation, in order to safely and efficiently cross intersections.
 
 However, a notable limitation of conventional RL algorithms is that they were primarily designed with the assumption of single-agent environments, where one agent interacts with the environment in isolation.
-In contrast, intersection scenarios involve multiple agents (vehicles) interacting with one another, necessitating the development of multi-agent reinforcement learning (MARL) techniques.
+In contrast, intersection scenarios involve multiple agents (vehicles) interacting with one another, necessitating the development of multi-agent reinforcement learning (MARL) techniques \cite{zhang2019multiagent}.
 
 Efforts have been made to extend model-free methods for MARL purposes, aiming to enable agents to learn in collaborative and competitive multi-agent environments.
 Nevertheless, many of these MARL methods have tended to simplify policy architectures, overlooking essential aspects such as the choice of probability distribution density function or the design of agents' policy architectures.
@@ -37,7 +37,24 @@ The specific objectives are as follows:
   \item To develop a shared value advantage function that incorporates joint actions and states of the agents, promoting coordination and cooperation among the autonomous vehicles during negotiation scenarios, leading to improved negotiation outcomes and overall traffic flow efficiency.
   \item To conduct extensive experiments and comparisons with conventional PPO algorithms using Gaussian distributions to demonstrate the superior performance and learning rate achieved by our proposed methodology.
 \end{itemize}
-\paragraph This study focuses on addressing negotiation tasks in unsignalized intersections for autonomous vehicles.
+\paragraph This work focuses on model-free unsignalized
+intersections with no sign where only AVs exist in a
+homogenous environment. The agents learn together in a
+mixed cooperative and competitive nature to ensure that the
+intersection crossing is safe and efficient. This is known as
+decentralized learning as each agent has its own observation
+and make decision separately which can ensure emergent
+behaviors like in the case of multi-agent hide and seek and
+more~\cite{johanson2021emergent, baker2019emergent, johanson2022emergent, baby2022analysis}. However, state-of-the-art MARL
+methods often overlook the importance of agent policy
+architecture if it is suitable for environment and try to make
+the learning generalized. This work focuses on extending the
+policy gradient method to multi-agent version and using Beta
+distribution instead of standard Gaussian distribution instead.
+We also put emphasis on agent’s policy architecture designed
+specifically for Beta distribution. The architecture predicts $\alpha, \beta$
+values to input to distribution density function in order tosample steering angle and acceleration value to control the
+vehicle.
 The research scope encompasses the development of a multi-agent reinforcement learning approach, specifically centered on Proximal Policy Optimization (PPO) with continuous actions and the utilization of the Beta distribution.
 The investigation will primarily involve autonomous vehicles acting as the agents, aiming to negotiate interactions with other vehicles in a dynamic traffic environment.
 The scope includes the exploration of various policy architectures, with particular emphasis on the dual-channel architecture for predicting the alpha and beta values of the Beta distribution.

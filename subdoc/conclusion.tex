@@ -1,4 +1,17 @@
 % sample text
 \chapter{Conclusion}\label{ch:conclusion}
-\paragraph This chapter presents the results of the experiments conducted in this study.
-lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+\paragraph We proposed PPO-Beta with dual channel architecture to
+predict both alpha and beta values for environment with 2
+bounded continuous action space.
+We chose PPO as RL
+algorithm for training the agent.
+After testing in traffic
+intersection environment, the agent can learn to be more careful when crossing the intersection than agent trained with
+standard Gaussian implementation.
+We also see that the
+training performance hardly drops in our implementation.
+In the future, we are going to extend to multi-agent version
+with more complex agents’ interaction and testing with real
+street data capture from drone footage such as the data
+provided by German transportation companies~\cite{bock2019ind} to see how
+the agents deal with real situations.

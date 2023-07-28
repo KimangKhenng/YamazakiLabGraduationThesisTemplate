@@ -4,7 +4,7 @@
 RL algorithms allow autonomous vehicles to learn from their interactions with the environment, such as other vehicles, pedestrians, traffic lights, and road conditions. This learning process helps the vehicles adapt to changing situations and make appropriate decisions in real-time.
 
 One of the significant advantages of RL in autonomous driving is its ability to handle complex and uncertain environments.
-RL agents can navigate through various traffic scenarios, including intersections, merging lanes, and lane-changing maneuvers, by learning optimal policies based on trial and error. RL also allows autonomous vehicles to adapt to diverse driving conditions, such as different weather conditions and traffic patterns.
+RL agents can navigate through various traffic scenarios, including intersections, merging lanes, and lane-changing maneuvers~\cite{Zhou2022, Wang2022}, by learning optimal policies based on trial and error. RL also allows autonomous vehicles to adapt to diverse driving conditions, such as different weather conditions and traffic patterns.
 
 Applications of RL in autonomous driving include:
 \begin{itemize}
@@ -25,7 +25,7 @@ as adaptive signal control)~\cite{yang2022inductive, wang2021adaptive, essa2020s
 However, as
 autonomous vehicles (AV) are gaining ground, problems
 arose as AV had difficulty trying to recognize the state of
-traffic signal in occluded situation [18].
+traffic signal in occluded situation~\cite{Isele2017}.
 AV can also rely on
 other data such as Lidar points, and other sensors to navigate
 through the intersection which renders the adaptive signal
@@ -44,7 +44,7 @@ RL brings promising
 solutions to solve control problems in this ever-growing big-
 data community.
 Typically, RL algorithms are divided into 2
-schools of thought — model-free and mode-based [23].
+schools of thought — model-free and mode-based~\cite{sutton2018reinforcement}.
 Model-based can be thought of when the agent has a complete
 understanding of the environment which means the action
 taken by the action guarantee the next state transition.
@@ -52,7 +52,7 @@ However, most world problems evolve round uncertainty
 where agents often have incomplete view of the environment.
 As agents interaction became inevitable, several MARL
 algorithms were proposed~\cite{peng2021learning, yang2018mean, johanson2021emergent, tang2020towards, oroojlooyjadid2019review, siekmann1998agent, zhou2020smarts, zhang2019multiagent}.
-\section{Reinforcement Learning Algorithms}
+\section{Reinforcement Learning Algorithms}\label{sec:reinforcement-learning-algorithms}
 
 Reinforcement Learning (RL) algorithms can be broadly categorized into two main classes: model-free and model-based approaches. Each class has several sub-branches that address specific challenges and requirements in different problem domains.
 
@@ -96,7 +96,7 @@ Q-learning is known to be model-free, which means it does not require knowledge 
 The Q-learning algorithm is widely used due to its simplicity and ability to handle large state spaces. However, it may suffer from slow convergence in complex environments, and variants like Double Q-learning and Deep Q-Networks (DQNs) have been introduced to address these limitations.
 
 \subsubsection{Deep Q-Networks (DQNs)}
-Deep Q-Networks (DQNs) is a deep learning extension of the Q-learning algorithm. DQNs leverage the power of deep neural networks to approximate the action-value function \(Q(s, a)\) in complex and high-dimensional environments. It was introduced as a breakthrough in combining deep learning and reinforcement learning, particularly in solving Atari 2600 games.
+Deep Q-Networks (DQNs) is a deep learning extension of the Q-learning algorithm. DQNs leverage the power of deep neural networks to approximate the action-value function \(Q(s, a)\) in complex and high-dimensional environments. It was introduced as a breakthrough in combining deep learning and reinforcement learning, particularly in solving Atari 2600 games~\cite{Mnih2013}.
 
 The core idea of DQNs is to use a neural network as a function approximator for the action-value function. The neural network takes the state \(s\) as input and outputs a vector of Q-values, one for each possible action. The action with the highest Q-value is then selected as the agent's action in the given state.
 
