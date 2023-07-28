@@ -7,7 +7,7 @@
 \contentsline {figure}{\numberline {3.4}{\ignorespaces $Q$ value Approximator (Critics)}}{31}{}%
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Centralized Training and Decentralized Execution}}{32}{}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces MetaDrive\nobreakspace {}\cite {li2021metadrive} Traffic Simulator}}{35}{}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces MetaDrive Traffic Simulator}}{35}{}%
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Comparision of single agent traning by average reward betwwen PPO Beta (Ours) and standard PPO Gaussian.}}{36}{}%
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Comparision of single agent traning by average success rate betwwen PPO Beta (Ours) and standard PPO Gaussian.}}{37}{}%
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Comparision of single agent traning by average safety rate betwwen PPO Beta (Ours) and standard PPO Gaussian.}}{37}{}%

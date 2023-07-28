@@ -1,27 +1,17 @@
 \begin{e-abstract}
 This study investigates negotiation tasks at intersections for autonomous vehicles and proposes a multi-agent reinforcement learning approach to tackle this challenge.
-Negotiating interactions at intersections is crucial for safe and efficient autonomous driving, requiring intelligent decision-making.
-However, traditional approaches, such as Proximal Policy Optimization (PPO) with Gaussian distribution, face limitations in capturing the complex dynamics of negotiation scenarios.
-We introduce the utilization of the Beta distribution as an alternative to the Gaussian distribution.
-The Beta distribution offers several advantages, including greater flexibility in modeling continuous actions and a more accurate representation of the uncertainty associated with negotiation tasks.
-By leveraging the properties of the Beta distribution, we can enhance the agents' decision-making capabilities, leading to improved negotiation outcomes.
-Our approach employs a centralized learning phase and decentralized execution.
-In the centralized learning phase, agents learn from a global perspective, considering the interactions and dynamics of all vehicles at the intersection.
-This enables the agents to learn effective negotiation strategies and understand the impact of their actions on the overall traffic flow.
-During decentralized execution, agents make decisions independently in real time, allowing for adaptive negotiation behaviors based on local observations.
-Moreover, we focus on a dual-channel architecture that predicts both the alpha and beta values of the Beta distribution.
-This architecture provides fine-grained control over the agents' behavior, allowing them to dynamically adjust their negotiation strategies based on the specific context of the intersection and the behavior of other vehicles.
-By accurately predicting the alpha and beta values, our agents can make informed decisions and exhibit more nuanced negotiation behaviors.
-To further improve negotiation performance, we introduce a shared value advantage function that incorporates the joined actions and state of the agents.
-This shared value function captures the collective impact of all agents, promoting coordination and cooperation in negotiation tasks.
-By considering the holistic effects of the agents' actions, our approach leads to better negotiation outcomes and improved traffic flow efficiency.
-The experiment is done through simulation which is a low-cost option to train autonomous vehicles.
-Through extensive experimentation and comparisons, we demonstrate that our proposed approach outperforms PPO with Gaussian distribution in terms of learning rate and overall performance.
-The utilization of the Beta distribution, combined with the dual-channel architecture and the shared value advantage function, enables our agents to exhibit interesting emergent behaviors at intersections.
-These behaviors include slowing down to let other vehicles pass or strategically cutting through intersections, showcasing the agents' adaptability and effective negotiation skills.
-Overall, this thesis presents a comprehensive multi-agent reinforcement learning approach for negotiation tasks at intersections for autonomous vehicles.
-By utilizing the Beta distribution, employing a centralized learning decentralized execution framework, adopting a dual-channel architecture, and incorporating a shared value advantage function, we achieve superior negotiation performance.
-The emergent behaviors exhibited by the agents highlight the efficacy and adaptability of our approach in complex negotiation scenarios.
-Our findings contribute to the advancement of negotiation tasks in intersection scenarios for autonomous vehicles, facilitating safer and more efficient traffic flow.
-By leveraging multi-agent reinforcement learning techniques and addressing the limitations of traditional approaches, we pave the way for the development of intelligent and socially aware autonomous vehicles capable of effectively navigating intersections and engaging in successful negotiation protocols.
+
+Negotiating interactions at intersections is crucial for safe and efficient autonomous driving, requiring intelligent decision-making. However, traditional approaches, such as Proximal Policy Optimization (PPO) with Gaussian distribution, face limitations in capturing the complex dynamics of negotiation scenarios. We introduce the utilization of the Beta distribution as an alternative to the Gaussian distribution. The Beta distribution offers several advantages, including greater flexibility in modeling continuous actions and a more accurate representation of the uncertainty associated with negotiation tasks. By leveraging the properties of the Beta distribution, we can enhance the agents' decision-making capabilities, leading to improved negotiation outcomes.
+
+Our approach employs a centralized learning phase and decentralized execution. In the centralized learning phase, agents learn from a global perspective, considering the interactions and dynamics of all vehicles at the intersection. This enables the agents to learn effective negotiation strategies and understand the impact of their actions on the overall traffic flow. During decentralized execution, agents make decisions independently in real time, allowing for adaptive negotiation behaviors based on local observations.
+
+Moreover, we focus on a dual-channel architecture that predicts both the alpha and beta values of the Beta distribution. This architecture provides fine-grained control over the agents' behavior, allowing them to dynamically adjust their negotiation strategies based on the specific context of the intersection and the behavior of other vehicles. By accurately predicting the alpha and beta values, the agents can make informed decisions and exhibit more nuanced negotiation behaviors.
+
+To further improve negotiation performance, we introduce a shared value advantage function that incorporates the joined actions and states of the agents. This shared value function captures the collective impact of all agents, promoting coordination and cooperation in negotiation tasks. By considering the holistic effects of the agents' actions, our approach leads to better negotiation outcomes and improved traffic flow efficiency.
+
+The experiment is carried out through simulation which is a low-cost option to train autonomous vehicles. Through extensive experimentation and comparisons, we demonstrate that our proposed approach outperforms PPO with Gaussian distribution in terms of learning rate and overall performance. The utilization of the Beta distribution, combined with the dual-channel architecture and the shared value advantage function, enables our agents to exhibit interesting emergent behaviors at intersections. These behaviors include slowing down to let other vehicles pass or strategically cutting through intersections, showcasing the agents' adaptability and effective negotiation skills.
+
+Overall, this thesis presents a comprehensive multi-agent reinforcement learning approach for negotiation tasks at intersections for autonomous vehicles. By utilizing the Beta distribution, employing a centralized learning decentralized execution framework, adopting a dual-channel architecture, and incorporating a shared value advantage function, we achieve superior negotiation performance. The emergent behaviors exhibited by the agents highlight the efficacy and adaptability of our approach in complex negotiation scenarios.
+
+Our findings contribute to the advancement of negotiation tasks in intersection scenarios for autonomous vehicles, facilitating safer and more efficient traffic flow. By leveraging multi-agent reinforcement learning techniques and addressing the limitations of traditional approaches, we pave the way for the development of intelligent and socially aware autonomous vehicles capable of effectively navigating intersections and engaging in successful negotiation protocols.
 \end{e-abstract}

@@ -145,23 +145,30 @@
 }
 
 @article{wang2021adaptive,
-    title={Adaptive Traffic Signal Control for large-scale scenario with Cooperative Group-based Multi-agent reinforcement learning},
-    author={T. Wang and J. Cao and A. Hussain},
-    journal={Transp Res Part C Emerg Technol},
-    volume={125},
-    year={2021},
-    month={4},
-    doi={10.1016/j.trc.2021.103046}
+    title = {Adaptive Traffic Signal Control for large-scale scenario with Cooperative Group-based Multi-agent reinforcement learning},
+    journal = {Transportation Research Part C: Emerging Technologies},
+    volume = {125},
+    pages = {103046},
+    year = {2021},
+    issn = {0968-090X},
+    doi = {https://doi.org/10.1016/j.trc.2021.103046},
+    url = {https://www.sciencedirect.com/science/article/pii/S0968090X21000760},
+    author = {Tong Wang and Jiahua Cao and Azhar Hussain},
+    keywords = {Multi-agent reinforcement learning, Adaptive traffic signal control, Regional green wave control, CVIS},
+    abstract = {Recent research reveals that reinforcement learning can potentially perform optimal decision-making compared to traditional methods like Adaptive Traffic Signal Control (ATSC). With the development of knowledge through trial and error, the Deep Reinforcement Learning (DRL) technique shows its feasibility for the intelligent traffic lights control. However, the general DRL algorithms cannot meet the demands of agents for coordination within large complex road networks. In this article, we introduce a new Cooperative Group-Based Multi-Agent reinforcement learning-ATSC (CGB-MATSC) framework. It is based on Cooperative Vehicle Infrastructure System (CVIS) to realize effective control in the large-scale road network. We propose a CGB-MAQL algorithm that applies k-nearest-neighbor-based state representation, pheromone-based regional green-wave control mode, and spatial discounted reward to stabilize the learning convergence. Extensive experiments and ablation studies of the CGB-MAQL algorithm show its effectiveness and scalability in the synthetic road network, Monaco city and Harbin city scenarios. Results demonstrate that compared with a set of general control methods, our algorithm can better control multiple intersection cases on congestion alleviation and environmental protection.}
 }
 
+
 @article{essa2020selflearning,
-    title={Self-learning adaptive traffic signal control for real-time safety optimization},
-    author={M. Essa and T. Sayed},
-    journal={Accid Anal Prev},
-    volume={146},
-    year={2020},
-    month={10},
-    doi={10.1016/j.aap.2020.105713}
+    title = {Self-learning adaptive traffic signal control for real-time safety optimization},
+    journal = {Accident Analysis \& Prevention},
+    volume = {146},
+    pages = {105713},
+    year = {2020},
+    issn = {0001-4575},
+    doi = {https://doi.org/10.1016/j.aap.2020.105713},
+    url = {https://www.sciencedirect.com/science/article/pii/S0001457520305388},
+    author = {Mohamed Essa and Tarek Sayed},
 }
 
 @inproceedings{shiwakoti2020investigating,
@@ -191,12 +198,21 @@
     primaryClass={cs.RO}
 }
 
-@inproceedings{qian2017autonomous,
-    title={Autonomous Intersection Management systems: criteria, implementation and evaluation; Autonomous Intersection Management systems: criteria, implementation and evaluation},
-    author={X. Qian and F. Altché and J. Grégoire and A. De and L. Fortelle},
-    year={2017},
-    doi={10.1049/iet-its.2016.0043}
+@article{qian2017autonomous,
+author = {Qian, Xiangjun and Altché, Florent and Grégoire, Jean and de La Fortelle, Arnaud},
+title = {Autonomous Intersection Management systems: criteria, implementation and evaluation},
+journal = {IET Intelligent Transport Systems},
+volume = {11},
+number = {3},
+pages = {182-189},
+keywords = {road vehicles, road traffic control, AIM systems, autonomous vehicles, autonomous intersection management, conflicting evaluation criteria, priority-based design, intersection controller, brake-safe state},
+doi = {https://doi.org/10.1049/iet-its.2016.0043},
+url = {https://ietresearch.onlinelibrary.wiley.com/doi/abs/10.1049/iet-its.2016.0043},
+eprint = {https://ietresearch.onlinelibrary.wiley.com/doi/pdf/10.1049/iet-its.2016.0043},
+abstract = {The foreseeable large-scale deployment of autonomous vehicles in the near future raises the question of autonomous intersection management (AIM). Numerous AIM designs have been proposed, but they lack a common vision of what defines a good system. In this study, the authors discuss a set of conflicting evaluation criteria that need to be balanced in the design of an AIM system, but are often considered individually in the literature. They then introduce their own priority-based design, where an intersection controller assigns priorities to incoming vehicles. On being assigned a priority, vehicles then cross the intersection while maintaining a so-called brake-safe state with respect to higher priority vehicles, rendering the system robust. They have performed extensive simulations to showcase the properties of the proposed system, and notably that it satisfactorily balances their criteria while remaining efficient.},
+year = {2017}
 }
+
 
 @inproceedings{chen2019intersection,
     title={Intersection Crossing for Autonomous Vehicles based on Deep Reinforcement Learning},
@@ -314,10 +330,12 @@
 }
 
 @misc{li2021metadrive,
-    title={MetaDrive: Composing Diverse Driving Scenarios for Generalizable Reinforcement Learning},
-    author={Q. Li and Z. Peng and L. Feng and Q. Zhang and Z. Xue and B. Zhou},
-    year={2021},
-    note={Available online at: \url{https://metadriverse.github.io/metadrive}}
+      title={MetaDrive: Composing Diverse Driving Scenarios for Generalizable Reinforcement Learning},
+      author={Quanyi Li and Zhenghao Peng and Lan Feng and Qihang Zhang and Zhenghai Xue and Bolei Zhou},
+      year={2022},
+      eprint={2109.12674},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
 }
 
 @misc{brockman2016openai,
@@ -337,42 +355,47 @@
     archivePrefix={arXiv},
     primaryClass={cs.CV}
 }
-
 @article{Zhou2022,
-   abstract = {Autonomous driving has attracted significant research interests in the past two decades as it offers many potential benefits, including releasing drivers from exhausting driving and mitigating traffic congestion, among others. Despite promising progress, lane-changing remains a great challenge for autonomous vehicles (AV), especially in mixed and dynamic traffic scenarios. Recently, reinforcement learning (RL) has been widely explored for lane-changing decision makings in AVs with encouraging results demonstrated. However, the majority of those studies are focused on a single-vehicle setting, and lane-changing in the context of multiple AVs coexisting with human-driven vehicles (HDVs) have received scarce attention. In this paper, we formulate the lane-changing decision-making of multiple AVs in a mixed-traffic highway environment as a multi-agent reinforcement learning (MARL) problem, where each AV makes lane-changing decisions based on the motions of both neighboring AVs and HDVs. Specifically, a multi-agent advantage actor-critic (MA2C) method is proposed with a novel local reward design and a parameter sharing scheme. In particular, a multi-objective reward function is designed to incorporate fuel efficiency, driving comfort, and the safety of autonomous driving. A comprehensive experimental study is made that our proposed MARL framework consistently outperforms several state-of-the-art benchmarks in terms of efficiency, safety, and driver comfort.},
-   author = {Wei Zhou and Dong Chen and Jun Yan and Zhaojian Li and Huilin Yin and Wanchen Ge},
-   doi = {10.1007/s43684-022-00023-5},
-   issue = {1},
-   journal = {Autonomous Intelligent Systems},
-   month = {12},
-   publisher = {Springer Science and Business Media LLC},
-   title = {Multi-agent reinforcement learning for cooperative lane changing of connected and autonomous vehicles in mixed traffic},
-   volume = {2},
-   year = {2022},
+  author = {Zhou, Wei and Chen, Dong and Yan, Jun and Li, Zhaojian and Yin, Huilin and Ge, Wanchen},
+  title = {Multi-agent reinforcement learning for cooperative lane changing of connected and autonomous vehicles in mixed traffic},
+  journal = {Autonomous Intelligent Systems},
+  volume = {2},
+  number = {1},
+  pages = {5},
+  year = {2022},
+  doi = {10.1007/s43684-022-00023-5},
+  url = {https://doi.org/10.1007/s43684-022-00023-5},
+  issn = {2730-616X},
+  abstract = {Autonomous driving has attracted significant research interests in the past two decades as it offers many potential benefits, including releasing drivers from exhausting driving and mitigating traffic congestion, among others. Despite promising progress, lane-changing remains a great challenge for autonomous vehicles (AV), especially in mixed and dynamic traffic scenarios. Recently, reinforcement learning (RL) has been widely explored for lane-changing decision makings in AVs with encouraging results demonstrated. However, the majority of those studies are focused on a single-vehicle setting, and lane-changing in the context of multiple AVs coexisting with human-driven vehicles (HDVs) have received scarce attention. In this paper, we formulate the lane-changing decision-making of multiple AVs in a mixed-traffic highway environment as a multi-agent reinforcement learning (MARL) problem, where each AV makes lane-changing decisions based on the motions of both neighboring AVs and HDVs. Specifically, a multi-agent advantage actor-critic (MA2C) method is proposed with a novel local reward design and a parameter sharing scheme. In particular, a multi-objective reward function is designed to incorporate fuel efficiency, driving comfort, and the safety of autonomous driving. A comprehensive experimental study is made that our proposed MARL framework consistently outperforms several state-of-the-art benchmarks in terms of efficiency, safety, and driver comfort.}
 }
 @article{Wang2022,
-   abstract = {A major challenge concerning a mixed traffic flow system, composed of connected autonomous vehicles (CAVs) and human driven vehicles (HDVs), is how to improve overall efficiency and safety by assigning appropriate control strategies to CAVs. Multi-agent deep reinforcement learning (MADRL) is a promising approach to address this challenge. It enables the joint training of multiple CAVs by fusing CAV sensing information and does not need the compliance of HDVs. However, the fusion of CAV sensing information is non-trivial. Traditional MADRL models usually fail to take advantage of connectivity among CAVs and time series characteristics of vehicle sensing information, leading to insufficient awareness of the traffic environment. Aimed at tackling these issues, this study proposes a MADRL framework integrating the double deep Q network (DDQN) and a spatiotemporal information extraction module, named spatiotemporal deep Q network (STDQN). A long-short term memory neural network with attention mechanism (AttenLSTMNN) is leveraged to extract temporal dependencies from vehicle perceptive information. Besides, a graph convolution network (GCN) is employed to model the spatial correlations among vehicles in a local range, as well as connectivity of multiple CAVs in a global range. Simulation experiments are conducted in an onramp merging scenario, which is one of the most important and commonly seen scenarios in highway or city expressway systems. Experimental results prove that as compared to baseline MADRL and rule-based methods, the proposed STDQN can improve the overall traffic efficiency, safety, and driving comfort. The proposed framework is promised to be deployed into real CAVs, to realize cooperative, safe, and efficient autonomous driving. keywords: Connected and autonomous vehicle; mixed traffic flow system; deep reinforcement learning; long-short term memory neural network; graph convolution network; cooperative merging.},
-   author = {Shuo Wang and Hideki Fujii and Shinobu Yoshimura},
-   doi = {10.2139/ssrn.4021924},
-   issn = {1556-5068},
-   journal = {SSRN Electronic Journal},
-   title = {Generating Merging Strategies for Connected Autonomous Vehicles Based on Spatiotemporal Information Extraction Module and Deep Reinforcement Learning},
-   url = {https://www.ssrn.com/abstract=4021924},
-   year = {2022},
+title = {Generating merging strategies for connected autonomous vehicles based on spatiotemporal information extraction module and deep reinforcement learning},
+journal = {Physica A: Statistical Mechanics and its Applications},
+volume = {607},
+pages = {128172},
+year = {2022},
+issn = {0378-4371},
+doi = {https://doi.org/10.1016/j.physa.2022.128172},
+url = {https://www.sciencedirect.com/science/article/pii/S0378437122007300},
+author = {Shuo Wang and Hideki Fujii and Shinobu Yoshimura},
+keywords = {Connected and autonomous vehicle, Mixed traffic flow system, Deep reinforcement learning, Long–short term memory neural network, Graph convolution network, Cooperative merging},
+abstract = {A major challenge concerning a mixed traffic flow system, composed of connected autonomous vehicles (CAVs) and human-driven vehicles (HDVs), is how to improve overall efficiency and safety by assigning appropriate control strategies to CAVs. Deep reinforcement learning (DRL) is a promising approach to address this challenge. It enables the joint training of multiple CAVs by fusing CAV sensing information and does not need compliance of HDVs. However, the fusion of CAV sensing information is non-trivial. Traditional DRL models usually fail to take advantage of connectivity among CAVs and time series characteristics of vehicle sensing information, leading to insufficient awareness of the traffic environment. Aimed at tackling these issues, this study proposes a DRL framework named spatiotemporal deep Q network (STDQN), by integrating a double deep Q network (DDQN) and a spatiotemporal information extraction module. A long–short term memory neural network with an attention mechanism (AttenLSTMNN) is leveraged to extract temporal dependencies from vehicle perceptive information. In addition, a graph convolution network (GCN) is employed to model the spatial correlations among vehicles in a local range, as well as the connectivity of multiple CAVs in a global range. Simulation experiments are conducted in an onramp merging scenario, which is one of the most important and commonly seen scenarios in highway or city expressway systems. Experimental results prove that as compared to baseline DRL and rule-based methods, the proposed STDQN can improve the overall traffic efficiency, safety, and driving comfort. The proposed framework is promised to be deployed into real CAVs, to realize cooperative, safe, and efficient autonomous driving.}
 }
-@article{Isele2017,
-   abstract = {Providing an efficient strategy to navigate safely through unsignaled intersections is a difficult task that requires determining the intent of other drivers. We explore the effectiveness of Deep Reinforcement Learning to handle intersection problems. Using recent advances in Deep RL, we are able to learn policies that surpass the performance of a commonly-used heuristic approach in several metrics including task completion time and goal success rate and have limited ability to generalize. We then explore a system's ability to learn active sensing behaviors to enable navigating safely in the case of occlusions. Our analysis, provides insight into the intersection handling problem, the solutions learned by the network point out several shortcomings of current rule-based methods, and the failures of our current deep reinforcement learning system point to future research directions.},
-   author = {David Isele and Reza Rahimi and Akansel Cosgun and Kaushik Subramanian and Kikuo Fujimura},
-   month = {5},
-   title = {Navigating Occluded Intersections with Autonomous Vehicles using Deep Reinforcement Learning},
-   url = {http://arxiv.org/abs/1705.01196},
-   year = {2017},
-}
-@article{Mnih2013,
-   abstract = {We present the first deep learning model to successfully learn control policies directly from high-dimensional sensory input using reinforcement learning. The model is a convolutional neural network, trained with a variant of Q-learning, whose input is raw pixels and whose output is a value function estimating future rewards. We apply our method to seven Atari 2600 games from the Arcade Learning Environment, with no adjustment of the architecture or learning algorithm. We find that it outperforms all previous approaches on six of the games and surpasses a human expert on three of them.},
-   author = {Volodymyr Mnih and Koray Kavukcuoglu and David Silver and Alex Graves and Ioannis Antonoglou and Daan Wierstra and Martin Riedmiller},
-   month = {12},
-   title = {Playing Atari with Deep Reinforcement Learning},
-   url = {http://arxiv.org/abs/1312.5602},
-   year = {2013},
+@INPROCEEDINGS{Isele2017,
+  author={Isele, David and Rahimi, Reza and Cosgun, Akansel and Subramanian, Kaushik and Fujimura, Kikuo},
+  booktitle={2018 IEEE International Conference on Robotics and Automation (ICRA)},
+  title={Navigating Occluded Intersections with Autonomous Vehicles Using Deep Reinforcement Learning},
+  year={2018},
+  volume={},
+  number={},
+  pages={2034-2039},
+  doi={10.1109/ICRA.2018.8461233}}
+
+@misc{Mnih2013,
+    title={Playing Atari with Deep Reinforcement Learning},
+    author={Volodymyr Mnih and Koray Kavukcuoglu and David Silver and Alex Graves and Ioannis Antonoglou and Daan Wierstra and Martin Riedmiller},
+    year={2013},
+    eprint={1312.5602},
+    archivePrefix={arXiv},
+    primaryClass={cs.LG}
 }
