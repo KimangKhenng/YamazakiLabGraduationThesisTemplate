@@ -12,7 +12,7 @@ Applications of RL in autonomous driving include:
     \item Behavior Prediction: RL algorithms can predict the behavior of other road users, such as pedestrians and human-driven vehicles, to anticipate their actions and plan accordingly.
     \item Lane Keeping and Lane Changing: RL can help autonomous vehicles maintain their lane position and make safe lane-changing maneuvers based on surrounding traffic.
     \item Intersection Negotiation: As seen in the context of this study, RL is applied to enable autonomous vehicles to negotiate intersections effectively, making decisions on when to yield or proceed.
-    \item Optimizing Energy Efficiency: RL can be used to optimize the energy consumption of autonomous vehicles, leading to longer battery life and reduced carbon emissions.
+    \item Optimizing Energy Consumption: RL can be used to optimize the energy consumption of autonomous vehicles, leading to longer battery life and reduced carbon emissions.
     \item Traffic Flow Optimization: RL can be employed to optimize traffic flow and reduce congestion in urban environments, improving overall transportation efficiency.
     \item Autonomous Parking: RL can be used to enable autonomous vehicles to park themselves in parking lots or on the street.
 \end{itemize}
@@ -22,14 +22,13 @@ Many works try to improve transportation safety and
 efficiency at the intersection by integrating various RL
 techniques such as intelligent traffic light (sometimes known
 as adaptive signal control)~\cite{yang2022inductive, wang2021adaptive, essa2020selflearning}.
-However, as
-autonomous vehicles (AV) are gaining ground, problems
-arose as AV had difficulty trying to recognize the state of
+However, as AVs are gaining ground, problems
+arose as AVs had difficulty trying to recognize the state of
 traffic signal in occluded situation~\cite{Isele2017}.
-AV can also rely on
+AVs can also rely on
 other data such as Lidar points, and other sensors to navigate
 through the intersection which renders the adaptive signal
-control unsuitable for Avs.
+control unsuitable for AVs.
 Another approach was to place an
 intersection controller (IC) somewhere at the center of the
 intersection.
@@ -39,12 +38,12 @@ AVs need to request passage to the IC in a similar fashion to
 air traffic control~\cite{li2021planning, gunarathna2022intelligent, qian2017autonomous, chen2019intersection}.
 As the solution becomes more
 complex, the infrastructure cost also increased which makes
-the situation only available in big city.
+the situation only available in a big city.
 RL brings promising
 solutions to solve control problems in this ever-growing big-
 data community.
 Typically, RL algorithms are divided into 2
-schools of thought — model-free and mode-based~\cite{sutton2018reinforcement}.
+schools of thought — model-based and mode-free~\cite{sutton2018reinforcement}.
 Model-based can be thought of when the agent has a complete
 understanding of the environment which means the action
 taken by the action guarantee the next state transition.

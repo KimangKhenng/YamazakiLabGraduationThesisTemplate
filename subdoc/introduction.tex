@@ -8,7 +8,7 @@ The integration of deep learning with RL has further accelerated progress, allow
 
 Within the realm of RL, various algorithms have been developed~\cite{peng2021end, mnih2016asynchronous, schulman2017proximal, schulman2015trust}, each dictating how an agent learns from its environment.
 These algorithms can broadly be categorized as model-based and model-free methods.
-In the context of autonomous vehicles navigating intersections, agents must acquire the skills to negotiate interactions effectively.
+In the context of autonomous vehicles(AVs) navigating intersections, agents must acquire the skills to negotiate interactions effectively.
 They should be capable of adapting their behavior to be either collaborative, cooperative, or competitive, depending on the situation, in order to safely and efficiently cross intersections.
 
 However, a notable limitation of conventional RL algorithms is that they were primarily designed with the assumption of single-agent environments, where one agent interacts with the environment in isolation.
@@ -17,24 +17,41 @@ In contrast, intersection scenarios involve multiple agents (vehicles) interacti
 Efforts have been made to extend model-free methods for MARL purposes, aiming to enable agents to learn in collaborative and competitive multi-agent environments.
 Nevertheless, many of these MARL methods have tended to simplify policy architectures, overlooking essential aspects such as the choice of probability distribution density function or the design of agents' policy architectures.
 
+\section{Motivation}\label{sec:motivation}
+\paragraph The motivation behind this research stems from the urgent need to address the challenges associated with negotiation tasks at intersections for AVs.
+As autonomous driving technology continues to advance rapidly, intersections remain one of the most complex and critical environments for AVs to navigate safely and efficiently.
+Traditional approaches, built on single-agent assumptions and Gaussian distributions, fall short in capturing the intricacies of multi-agent negotiation scenarios.
+
+The potential benefits of effective intersection negotiation are significant, including enhanced traffic flow, reduced congestion, and increased road safety.
+By enabling AVs to negotiate intersections collaboratively, competitively, or in mixed settings, we can create a more harmonious and efficient traffic ecosystem.
+Furthermore, successful negotiation protocols at intersections are crucial for the widespread adoption and acceptance of autonomous driving technology.
+
+The adoption of multi-agent reinforcement learning and the utilization of the Beta distribution present promising avenues to revolutionize intersection negotiation.
+The ability to fine-tune negotiation strategies, consider the joint impact of all agents, and accurately model uncertainty using the Beta distribution are all factors that can greatly improve the negotiation capabilities of AVs.
+
+The research seeks to push the boundaries of existing techniques and bridge the gap between single-agent and multi-agent reinforcement learning.
+By designing a robust and adaptable negotiation framework, we aim to empower AVs to make well-informed and context-aware decisions at intersections, leading to safer, smoother, and more efficient traffic flow.
+
+Ultimately, this study's motivation lies in contributing to the development of socially-aware and intelligent AVs that can effectively interact with other agents and adapt to various negotiation scenarios at intersections.
+By overcoming the limitations of conventional approaches, we aspire to pave the way for the widespread integration of AVs in urban environments, revolutionizing transportation and advancing the future of mobility.
 
 \section{Problem Statement}\label{sec:problem-statement}
-\paragraph The problem of negotiating interactions at intersections for autonomous vehicles poses significant challenges in the field of autonomous driving.
+\paragraph The problem of negotiating interactions at intersections for AVs poses significant challenges in the field of autonomous driving.
 Traditional RL algorithms, primarily designed for single-agent environments, struggle to address the complexities of multi-agent negotiation scenarios.
 While some efforts have been made to extend model-free methods for MARL purposes, these approaches often overlook crucial aspects, such as the choice of probability distribution functions and the design of policy architectures.
 Additionally, conventional RL algorithms typically rely on Gaussian distributions, which may not adequately capture the complexities of negotiation tasks.
 As a result, there is a need for a novel and sophisticated approach that leverages the advantages of MARL, centralized learning with decentralized execution, and the Beta distribution to effectively train autonomous agents to negotiate intersections collaboratively, competitively, or in a mixed setting.
-Addressing these challenges will significantly advance the capabilities of autonomous vehicles, leading to safer and more efficient traffic flow at intersections.
+Addressing these challenges will significantly advance the capabilities of AVs, leading to safer and more efficient traffic flow at intersections.
 
 
 \section{Objectives and Scope of the Study}\label{sec:objectives-and-scope-of-the-study}
-\paragraph The primary objective of this study is to develop and evaluate a novel MARL approach for negotiating interactions at intersections for autonomous vehicles.
+\paragraph The primary objective of this study is to develop and evaluate a novel MARL approach for negotiating interactions at intersections for AVs.
 The specific objectives are as follows:
 \begin{itemize}
-  \item To design a robust and efficient multi-agent reinforcement learning framework that enables autonomous vehicles to navigate intersections safely and efficiently by learning collaborative, competitive, and mixed negotiation strategies.
+  \item To design a robust and efficient multi-agent reinforcement learning framework that enables AVs to navigate intersections safely and efficiently by learning collaborative, competitive, and mixed negotiation strategies.
   \item To explore the advantages of the Beta distribution over traditional Gaussian distributions in modeling continuous actions and uncertainty during negotiation tasks, thereby enhancing the adaptability and decision-making capabilities of the autonomous agents.
-  \item To propose a dual-channel architecture for predicting both the alpha and beta values of the Beta distribution, empowering the agents to fine-tune their negotiation strategies based on the specific context of the intersection and the behavior of other vehicles.
-  \item To develop a shared value advantage function that incorporates joint actions and states of the agents, promoting coordination and cooperation among the autonomous vehicles during negotiation scenarios, leading to improved negotiation outcomes and overall traffic flow efficiency.
+  \item To propose a dual-channel architecture for predicting both the $\alpha$ and $\beta$ values of the Beta distribution, empowering the agents to fine-tune their negotiation strategies based on the specific context of the intersection and the behavior of other vehicles.
+  \item To develop a shared value advantage function that incorporates joint actions and states of the agents, promoting coordination and cooperation among the AVs during negotiation scenarios, leading to improved negotiation outcomes and overall traffic flow efficiency.
   \item To conduct extensive experiments and comparisons with conventional PPO algorithms using Gaussian distributions to demonstrate the superior performance and learning rate achieved by our proposed methodology.
 \end{itemize}
 \paragraph This work focuses on model-free unsignalized
@@ -51,34 +68,15 @@ architecture if it is suitable for environment and try to make
 the learning generalized. This work focuses on extending the
 policy gradient method to multi-agent version and using Beta
 distribution instead of standard Gaussian distribution instead.
-We also put emphasis on agent’s policy architecture designed
+We also put emphasis on agent's policy architecture designed
 specifically for Beta distribution. The architecture predicts $\alpha, \beta$
-values to input to distribution density function in order tosample steering angle and acceleration value to control the
+values to feed to distribution density function in order to sample steering angle and acceleration value to control the
 vehicle.
 The research scope encompasses the development of a multi-agent reinforcement learning approach, specifically centered on Proximal Policy Optimization (PPO) with continuous actions and the utilization of the Beta distribution.
-The investigation will primarily involve autonomous vehicles acting as the agents, aiming to negotiate interactions with other vehicles in a dynamic traffic environment.
-The scope includes the exploration of various policy architectures, with particular emphasis on the dual-channel architecture for predicting the alpha and beta values of the Beta distribution.
+The investigation will primarily involve AVs acting as the agents, aiming to negotiate interactions with other vehicles in a dynamic traffic environment.
+The scope includes the exploration of various policy architectures, with particular emphasis on the dual-channel architecture for predicting the $\alpha$ and $\beta$ values of the Beta distribution.
 The shared value advantage function will also be integrated to enable agents to consider the collective impact of their actions and enhance coordination during negotiation.
 The performance of the proposed methodology will be evaluated through extensive simulations and comparisons with traditional PPO algorithms utilizing Gaussian distributions.
 The evaluation metrics will include learning rate, negotiation outcomes, and the emergence of interesting behaviors such as slowing down to let other vehicles pass or cutting through intersections.
-It is important to note that this study focuses specifically on the intersection negotiation tasks for autonomous vehicles and does not cover other aspects of autonomous driving, such as motion planning or perception.
-Additionally, while the study aims to achieve superior performance in negotiation scenarios, it may not address all possible scenarios that autonomous vehicles may encounter in real-world urban environments.
-
-
-\section{Motivation}\label{sec:motivation}
-\paragraph The motivation behind this research stems from the urgent need to address the challenges associated with negotiation tasks at intersections for autonomous vehicles.
-As autonomous driving technology continues to advance rapidly, intersections remain one of the most complex and critical environments for autonomous vehicles to navigate safely and efficiently.
-Traditional approaches, built on single-agent assumptions and Gaussian distributions, fall short in capturing the intricacies of multi-agent negotiation scenarios.
-
-The potential benefits of effective intersection negotiation are significant, including enhanced traffic flow, reduced congestion, and increased road safety.
-By enabling autonomous vehicles to negotiate intersections collaboratively, competitively, or in mixed settings, we can create a more harmonious and efficient traffic ecosystem.
-Furthermore, successful negotiation protocols at intersections are crucial for the widespread adoption and acceptance of autonomous driving technology.
-
-The adoption of multi-agent reinforcement learning and the utilization of the Beta distribution present promising avenues to revolutionize intersection negotiation.
-The ability to fine-tune negotiation strategies, consider the joint impact of all agents, and accurately model uncertainty using the Beta distribution are all factors that can greatly improve the negotiation capabilities of autonomous vehicles.
-
-The research seeks to push the boundaries of existing techniques and bridge the gap between single-agent and multi-agent reinforcement learning.
-By designing a robust and adaptable negotiation framework, we aim to empower autonomous vehicles to make well-informed and context-aware decisions at intersections, leading to safer, smoother, and more efficient traffic flow.
-
-Ultimately, this study's motivation lies in contributing to the development of socially-aware and intelligent autonomous vehicles that can effectively interact with other agents and adapt to various negotiation scenarios at intersections.
-By overcoming the limitations of conventional approaches, we aspire to pave the way for the widespread integration of autonomous vehicles in urban environments, revolutionizing transportation and advancing the future of mobility.
+It is important to note that this study focuses specifically on the intersection negotiation tasks for AVs and does not cover other aspects of autonomous driving, such as motion planning or perception.
+Additionally, while the study aims to achieve superior performance in negotiation scenarios, it may not address all possible scenarios that AVs may encounter in real-world urban environments.
