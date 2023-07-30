@@ -1,5 +1,5 @@
-\section{Preliminary}\label{sec:preliminary}
-\subsection{Markov Decision Process}\label{subsec:markov-decision-process}
+%\section{Preliminary}\label{sec:preliminary}
+\section{Markov Decision Process}\label{sec:markov-decision-process}
 \paragraph A Markov decision process (MDP) is a tuple $(S, A, P, R, \gamma)$, where: $S$ is a set of states. $A$ is a set of actions. $P(s'|s, a)$ is the probability of transitioning from state $s$ to state $s'$ when action $a$ is taken.
 $R(s, a)$ is the reward received when taking action $a$ in state $s$. $\gamma \in [0, 1)$ is a discount factor that determines the importance of future rewards.
 The MDP definition can be interpreted as follows:
@@ -12,7 +12,7 @@ The MDP definition can be interpreted as follows:
 \end{itemize}
 Decentralized Partially Observable Markov Decision Processes (Dec-POMDPs) are a class of multi-agent reinforcement learning problems where multiple agents collectively aim to maximize a global objective function while facing uncertainty in a partially observable environment.
 
-\subsubsection*{Elements of Dec-POMDPs:}
+\subsection{Elements of Dec-POMDPs:}\label{subsec:elements-of-dec-pomdps:}
 \begin{enumerate}
     \item \textbf{Agents:} Dec-POMDPs involve multiple agents denoted by index $i \in \{1, 2, \ldots, N\}$, each with its own local observation space $O_i$ and action set $A_i$. The agents interact with the environment and communicate with each other to make coordinated decisions.
     \item \textbf{States:} The environment's underlying state is not directly observable. Instead, each agent $i$ receives partial, private observations $o_i$ that provide probabilistic information about the true state. The state space is denoted as $S$.
@@ -23,7 +23,8 @@ Decentralized Partially Observable Markov Decision Processes (Dec-POMDPs) are a 
     \item \textbf{Global Objective Function:} The goal of the agents is to optimize a global objective function $J(\mathbf{a})$ that captures the overall mission or task. This objective function depends on the collective actions of all agents and may involve cooperation and coordination.
 
 \end{enumerate}
-\subsection{Gaussian Distribution}\label{subsec:gaussian-distribution}
+
+\section{Gaussian Distribution}\label{sec:gaussian-distribution}
 The Gaussian distribution, also known as the normal distribution, is a continuous probability distribution widely used to model random variables in various real-world scenarios. It is characterized by its mean $\mu$ and variance $\sigma^2$. The probability density function (PDF) of a Gaussian distribution is given by:
 
 \begin{equation}
@@ -39,10 +40,11 @@ The Gaussian distribution is symmetric around its mean, and its shape is determi
     \caption{Normal Distribution}\label{fig:figure}
 \end{figure}
 
-\subsection*{Policy Gradient Method with Gaussian Approximation:}
-In Reinforcement Learning (RL), the policy gradient method is a popular approach to learning the policy of an agent in a continuous action space. The policy gradient method directly optimizes the policy parameters to maximize the expected cumulative reward.
+\section{Policy Gradient Method with Gaussian Approximation:}\label{sec:policy-gradient-method-with-gaussian-approximation:}
+In RL, the policy gradient method is a popular approach to learning the policy of an agent in a continuous action space.
+The policy gradient method directly optimizes the policy parameters to maximize the expected cumulative reward.
 
-\subsubsection*{Parameterized Policy:}
+\subsection{Parameterized Policy}\label{subsec:parameterized-policy}
 To handle continuous actions, the policy is often parameterized as a Gaussian distribution with a mean vector $\boldsymbol{\mu}$ and a variance vector $\boldsymbol{\sigma}^2$, or alternatively, using the standard deviation $\boldsymbol{\sigma}$. The policy function is defined as:
 
 \begin{equation}
@@ -51,19 +53,19 @@ To handle continuous actions, the policy is often parameterized as a Gaussian di
 
 where $\pi_{\boldsymbol{\theta}}(a | s)$ is the policy function with parameters $\boldsymbol{\theta}$, and $\text{diag}(\cdot)$ extracts the diagonal elements to form a diagonal covariance matrix.
 
-\subsubsection*{Prediction of Mean Using Neural Network:}
+\subsection{Prediction of Mean Using Neural Network}\label{subsec:prediction-of-mean-using-neural-network}
 In practice, the mean $\boldsymbol{\mu}(s; \boldsymbol{\theta})$ is often predicted using a neural network with state $s$ as input and the policy parameters $\boldsymbol{\theta}$ as weights.
 The neural network learns to map states to action means, allowing the agent to approximate actions based on observations from the environment.
 
-\subsubsection*{Adjusting Standard Deviation Over Time:}
+\subsection{Adjusting Standard Deviation Over Time}\label{subsec:adjusting-standard-deviation-over-time}
 During the training process, the standard deviation $\boldsymbol{\sigma}(s; \boldsymbol{\theta})$ can be adjusted over time.
-It is often initialized with some initial value and then decayed towards a minimum value~\cite{capasso2021endtoend, sutton2018reinforcement, mnih2015humanlevel}.
+It is often initialized with some initial value and then decayed towards a minimum value~\cite{capasso2021endtoend},\cite{sutton2018reinforcement},\cite{mnih2015humanlevel}.
 This adjustment allows the agent to explore more at the beginning of training (high uncertainty) and become more confident in its actions as training progresses (low uncertainty).
 
-\subsection{Beta Distribution}\label{subsec:beta-distribution}
+\section{Beta Distribution}\label{sec:beta-distribution}
 The Beta distribution is a continuous probability distribution defined on the interval [0, 1].
 It is commonly used to model random variables that represent probabilities or proportions.
-The Beta distribution is parameterized by two shape parameters, denoted as $\alpha$ and $\beta$, which control the shape of the distribution. The probability density function (PDF) of the Beta distribution is given by:
+The Beta distribution is parameterized by two shape parameters, denoted as $\alpha$ and $\beta$, which control the shape of the distribution. The PDF of the Beta distribution is given by:
 
 \begin{equation}
     f(x | \alpha, \beta) = \frac{1}{B(\alpha, \beta)} x^{\alpha - 1}(1 - x)^{\beta - 1},\label{eq:equation4}
@@ -86,29 +88,29 @@ The mode of the distribution is at $\frac{\alpha - 1}{\alpha + \beta - 2}$.
     \caption{Beta Distribution}\label{fig:figure2}
 \end{figure}
 
-\subsection*{Policy Gradient Method with Beta Distribution:}
-In the policy gradient method for Reinforcement Learning (RL), the policy is often parameterized as a Beta distribution to handle continuous actions within the range [0, 1].
+\section{Policy Gradient Method with Beta Distribution:}\label{sec:policy-gradient-method-with-beta-distribution:}
+In the policy gradient method for RL, the policy is often parameterized as a Beta distribution to handle continuous actions within the range [0, 1].
 
-\subsubsection*{Predicting Alpha and Beta Values from Neural Network:}
+\subsection{Predicting Alpha and Beta Values from Neural Network:}\label{subsec:predicting-alpha-and-beta-values-from-neural-network:}
 To approximate the Beta distribution for policy generation, a neural network is used to predict the $\alpha$ and $\beta$ parameters.
 The neural network takes the state $s$ as input and produces the $\alpha$ and $\beta$ values as output.
 These values are then used to define the Beta distribution for sampling actions.
 
-\subsubsection*{Interpretation of 1 - $\alpha$ and 1 - $\beta$:}
+\subsection{Interpretation of 1 - $\alpha$ and 1 - $\beta$:}\label{subsec:interpretation-of-1---$alpha$-and-1---$beta$:}
 The $\alpha$ and $\beta$ values can be interpreted as counts of successes and failures, respectively.
 Specifically, if $\alpha > 1$ and $\beta > 1$, then $\alpha - 1$ and $\beta - 1$ can be thought of as the number of successes and failures, respectively.
 This interpretation is useful when modeling probabilities or proportions in the context of the policy gradient method.
 
-\subsection{Beta Policy}\label{subsec:beta-policy}
+\section{Beta Policy}\label{sec:beta-policy}
 \paragraph We propose a straightforward neural network architecture, specifically a Multilayer Perceptron (MLP), with 2 hidden layers each having a size of 256 neurons. This neural network is then divided into two separate channels, each having a hidden layer with 256 neurons. These channels are designed to predict values for steering angle and acceleration, respectively, in order to control the vehicle.
 
 The implementation of the neural network is carried out using PyTorch~\cite{paszke2019pytorch}, a popular deep learning library. The input to the network consists of ego states, which include relevant information about the vehicle in relation to its environment, such as velocity, checkpoint positions, time, and distance to the destination. Additionally, LiDAR data from the left, right, and front sides of the vehicle is collected and fed into the network. LiDAR is a sensing technology used in many autonomous vehicles, and its utilization allows the proposed algorithm to be easily adapted and applied in real-world scenarios.
-
-The proposed neural network architecture employs an MLP with two hidden layers, each with 256 neurons. It is divided into two channels for predicting steering angle and acceleration values, respectively. The input includes ego states and LiDAR data, making it suitable for controlling the vehicle in an autonomous driving context. The implementation is carried out using PyTorch, a popular deep learning framework known for its efficiency and flexibility.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=12cm]{assets/beta_policy}
     \caption{Beta Policy}\label{fig:figure3}
+    \small
+    Here in a new line a long description about the figure, in a smaller text
 \end{figure}
 
 The final layer that output these values uses softplus
@@ -125,7 +127,7 @@ e^x)$ . As the environment accepts action with $a = [sa,acc]^T=[-1,1]^2$, the ou
 where $h(\beta, \alpha)$ is the mean of the Beta distribution with parameters $\beta$ and $\alpha$, $sa$ stands for steering angle, and $acc$ stands for acceleration.
 It should be noted that we only consider the case where $\alpha > 1$ and $\beta > 1$.
 
-\subsection{Advantage Function (Experience Sharing)}\label{subsec:advantage-function}
+\section{Advantage Function (Experience Sharing)}\label{sec:advantage-function}
 \paragraph The advantage function is a key component of the policy gradient method.
 It is used to estimate the advantage of taking an action $a$ in state $s$ over taking an action sampled from the policy $\pi$ in state $s$.
 The advantage function is defined as:
@@ -141,7 +143,7 @@ whose $k$ is the individual reward calculated by Monte Carlo Method~\cite{sutton
     \caption{$Q$ value Approximator (Critics)}\label{fig:figure4}
 \end{figure}
 
-\subsection{Objective Function}\label{subsec:objective-function}
+\section{Objective Function}\label{sec:objective-function}
 \paragraph The objective function is used to optimize the policy parameters $\theta$. The goal of the agent is to maximize the culminative reward over time by updating the parameterized policy with:
 \begin{equation}
     \theta_{k+1} = \arg\max_{\theta} \frac{1}{|D_{k}|T} \sum_{\tau\in D_{k}}^{} \sum_{t=1}^{T} \min (\frac{\pi_{\theta}(a_{t}|s_{t})}{\pi_{\theta_{k}}(a_{t}|s_{t})} A^{\pi_{\theta_{k}}}, g(\epsilon, A^{\pi_{\theta_{k}}}))\label{eq:equation8}
@@ -154,7 +156,7 @@ where $D_{k}$ is the set of trajectories collected by the agent at iteration $k$
     \end{cases}\label{eq:equation9}
 \end{equation}
 
-\subsection{Centralized Training and Decentralized Execution}\label{subsec:centralized-training-and-decentralized-execution}
+\section{Centralized Training and Decentralized Execution(CTDE)}\label{sec:centralized-training-and-decentralized-execution}
 CTDE starts with several agents being placed in the
 environment. The agents are allowed to run for several
 predefined steps (2000 timestamps in our case). In the process,
@@ -162,7 +164,7 @@ samples are collected in a rollout buffer, the buffer then
 performs some preprocessing tasks such as arranging data and
 splitting data into experience batches.
 Those baches are then
-fed into the central agent’s actor-critics network to update the
+fed into the central agent's actor-critics network to update the
 policy by calculating loss and through back propagation.
 The updated policy is then distributed back to the individual agent.
 The cycle repeats until the reward feedback converges.

@@ -1,0 +1,39 @@
+\section{Data and Simulator Choices}\label{sec:data-and-simulator-choices}
+
+\subsection{Gym-Graph-Traffic}\label{subsec:gym-graph-traffic}
+\paragraph Gym-graph-traffic is an OpenAI Gym-compatible road traffic simulator that provides a platform for studying and experimenting with various traffic scenarios. To use the simulator, users can easily install it from the provided GitHub repository\footnote{https://github.com/rltraffic/gym-graph-traffic} and run examples using Python scripts like "minimal.py." The simulator's configuration is customizable through parameters available in the $"params.py"$ file, allowing users to adjust aspects such as episode duration, step length, and possible actions per intersection.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=12cm]{assets/gym-traffic}
+    \caption{MetaDrive Traffic Simulator}
+    \label{fig:figure8}
+    \small
+    General interface of Gym-graph-traffic that allows us to simulate urban environment with a lot of entities
+\end{figure}
+The simulator operates on different time units, such as Experiment, Episode, Step, and Update, each representing specific durations in real-time seconds. Actions in the simulator are represented as integers and can be translated to a base x representation. By providing observation vectors for the average number of cars and average speed per road segment, users can monitor and evaluate traffic performance. With the option to choose from several preset road network configurations, the simulator offers flexibility in studying various traffic environments. Although not yet supporting Gym-like rendering, rendering options can still be configured within the "params.py" file. Overall, gym-graph-traffic serves as a valuable tool for researchers and developers interested in traffic management and autonomous vehicle behavior.
+
+\subsection{Highway-env}\label{subsec:highway-env}
+\paragraph Highway-env~\cite{highway-env} is a collection of environments designed for autonomous driving and tactical decision-making tasks, maintained by Edouard Leurent. The package includes various environments, each representing different driving scenarios. One such environment is $"Highway,"$ where the ego-vehicle navigates a multilane highway with other vehicles. The agent's objective is to achieve high speed while avoiding collisions with neighboring vehicles and staying on the right side of the road. A faster variant called "highway-fast-v0" is available for large-scale training with reduced simulation accuracy.
+
+Other environments include $"Merge,"$ where the ego-vehicle must maintain high speed and make room for incoming vehicles merging into the traffic, $"Roundabout,"$ requiring the ego-vehicle to pass a roundabout with lane changes and collision avoidance, $"Parking,"$ a goal-conditioned task involving parking the vehicle in a given space with the appropriate heading, "Intersection," an intersection negotiation task with dense traffic, and $"Racetrack,"$ a continuous control task involving lane-keeping and obstacle avoidance.
+
+The package\footnote{https://github.com/Farama-Foundation/HighwayEnv} provides examples of agents that can solve the highway-env environments, such as the Deep Q-Network (DQN), Deep Deterministic Policy Gradient (DDPG), Value Iteration, and Monte-Carlo Tree Search (MCTS) agents. These agents utilize various reinforcement learning techniques to perform the tasks efficiently.
+
+To use highway-env, users can install it using pip and then import the environment in Python code. The agent can interact with the environment by taking actions, receiving observations, rewards, and additional information at each step.
+
+Overall, highway-env offers a comprehensive set of environments for researchers and developers to study and develop autonomous driving algorithms and tactical decision-making strategies.
+
+\subsection{MetaDrive}\label{subsec:metadrive}
+\paragraph
+MetaDrive~\cite{li2021metadrive} is a driving simulator designed for generalizable RL research\footnote{https://github.com/metadriverse/metadrive}. It supports generating diverse driving scenarios with various road maps and traffic settings, making it suitable for studying RL agents' generalization capabilities. The simulator is lightweight, easy to install, and can achieve up to 300 FPS on a standard PC. It provides realistic physics simulation and multiple sensory inputs, including Lidar, RGB images, top-down semantic maps, and first-person view images. Examples of different driving scenarios are provided, such as Single Agent Environment, Multi-Agent Environment, and Real Environment, along with instructions on how to run them. To build the RL environment, users can code in the Gymnasium format using the provided MetaDriveEnv class.
+
+MetaDrive stands out as an excellent choice for multi-agent RL research due to its provision of rich observations and robust multi-agent support. In the context of multi-agent RL, having access to diverse and comprehensive observations is crucial for agents to effectively learn and adapt in complex environments. MetaDrive addresses this need by offering multiple sensory inputs, including Lidar, RGB images, top-down semantic maps, and first-person view images. These varied observation modalities enable agents to perceive the environment from different perspectives, promoting a more comprehensive understanding of the driving scenarios.
+
+Furthermore, MetaDrive's multi-agent support is a key strength that sets it apart. In multi-agent environments, interactions and cooperation between agents play a significant role in determining their overall performance and behavior. MetaDrive facilitates the simulation of multiple agents simultaneously, allowing researchers to study cooperative, competitive, and mixed interactions between agents. This capability is invaluable for investigating complex real-world scenarios where multiple autonomous vehicles, pedestrians, and traffic participants interact dynamically.
+
+By combining rich observations with multi-agent support, MetaDrive provides a versatile platform for exploring diverse driving scenarios, such as intersection negotiations, cooperative lane merging, and complex traffic situations. The ability to model and train agents in such realistic and interactive environments fosters the development of more robust and generalizable multi-agent RL algorithms, contributing significantly to the advancement of autonomous driving systems and intelligent transportation technologies. As a result, MetaDrive emerges as a superior option for researchers seeking a comprehensive and effective tool for multi-agent RL research in driving and traffic-related domains.
+
+
+
+
+

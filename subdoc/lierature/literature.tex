@@ -1,4 +1,3 @@
-\chapter{Literature Review}\label{ch:literature-review}
 \section{Reinforcement Learning in Traffic Intersection}\label{sec:reinforcement-learning-in-traffic-intersection}
 \paragraph RL has shown great promise in enabling vehicles to make intelligent decisions on the road.
 RL algorithms allow autonomous vehicles to learn from their interactions with the environment, such as other vehicles, pedestrians, traffic lights, and road conditions. This learning process helps the vehicles adapt to changing situations and make appropriate decisions in real-time.
@@ -8,10 +7,10 @@ RL agents can navigate through various traffic scenarios, including intersection
 
 Applications of RL in autonomous driving include:
 \begin{itemize}
-    \item Trajectory Planning: RL can be used to plan safe and efficient trajectories for autonomous vehicles, considering various factors such as traffic density, speed limits, and road conditions.
-    \item Behavior Prediction: RL algorithms can predict the behavior of other road users, such as pedestrians and human-driven vehicles, to anticipate their actions and plan accordingly.
-    \item Lane Keeping and Lane Changing: RL can help autonomous vehicles maintain their lane position and make safe lane-changing maneuvers based on surrounding traffic.
-    \item Intersection Negotiation: As seen in the context of this study, RL is applied to enable autonomous vehicles to negotiate intersections effectively, making decisions on when to yield or proceed.
+    \item Trajectory Planning: RL can be used to plan safe and efficient trajectories for autonomous vehicles, robots~\cite{9940484, 10.3389/fnbot.2022.883562}, considering various factors such as traffic density, speed limits, and road conditions.
+    \item Behavior Prediction: RL algorithms can predict the behavior of other road users, such as pedestrians~\cite{Fintz2022} and human-driven vehicles, to anticipate their actions and plan accordingly.
+    \item Lane Keeping and Lane Changing: RL can help autonomous vehicles maintain their lane position and make safe lane-changing maneuvers~\cite{Zhou2022} based on surrounding traffic.
+    \item Intersection Negotiation: As seen in the context of this study, RL is applied to enable autonomous vehicles to negotiate intersections~\cite{qian2017autonomous, peng2021learning, wu2020cooperative} effectively, making decisions on when to yield or proceed.
     \item Optimizing Energy Consumption: RL can be used to optimize the energy consumption of autonomous vehicles, leading to longer battery life and reduced carbon emissions.
     \item Traffic Flow Optimization: RL can be employed to optimize traffic flow and reduce congestion in urban environments, improving overall transportation efficiency.
     \item Autonomous Parking: RL can be used to enable autonomous vehicles to park themselves in parking lots or on the street.
@@ -40,29 +39,24 @@ As the solution becomes more
 complex, the infrastructure cost also increased which makes
 the situation only available in a big city.
 RL brings promising
-solutions to solve control problems in this ever-growing big-
-data community.
-Typically, RL algorithms are divided into 2
-schools of thought — model-based and mode-free~\cite{sutton2018reinforcement}.
-Model-based can be thought of when the agent has a complete
-understanding of the environment which means the action
-taken by the action guarantee the next state transition.
-However, most world problems evolve round uncertainty
-where agents often have incomplete view of the environment.
-As agents interaction became inevitable, several MARL
-algorithms were proposed~\cite{peng2021learning, yang2018mean, johanson2021emergent, tang2020towards, oroojlooyjadid2019review, siekmann1998agent, zhou2020smarts, zhang2019multiagent}.
+solutions to solve control problems in this ever-growing big-data community.
 \section{Reinforcement Learning Algorithms}\label{sec:reinforcement-learning-algorithms}
 
-Reinforcement Learning (RL) algorithms can be broadly categorized into two main classes: model-free and model-based approaches. Each class has several sub-branches that address specific challenges and requirements in different problem domains.
+Typically, RL algorithms are divided into 2
+schools of thought \textemdash model-based and mode-free~\cite{sutton2018reinforcement} approaches.
+Each class has several sub-branches that address specific challenges and requirements in different problem domains.
 
 \subsection{Model-Free Reinforcement Learning}\label{subsec:model-free-reinforcement-learning}
-Model-free reinforcement learning (RL) is a type of reinforcement learning approach where an agent learns to make decisions and take actions in an environment without explicitly building a model of the environment. In traditional RL, an agent typically constructs a model that represents the transition dynamics and rewards of the environment. This model helps the agent to simulate and plan future actions to make decisions. However, in model-free RL, the agent directly learns from experience through trial and error without explicitly constructing a model.
+Most world problems evolve round uncertainty where agents often have incomplete view of the environment.
+This is where model-free RL emerges.
+Model-free RL is a type of reinforcement learning approach where an agent learns to make decisions and take actions in an environment without explicitly building a model of the environment. In traditional RL, an agent typically constructs a model that represents the transition dynamics and rewards of the environment. This model helps the agent to simulate and plan future actions to make decisions. However, in model-free RL, the agent directly learns from experience through trial and error without explicitly constructing a model.
 
 In model-free RL, the agent interacts with the environment over multiple episodes or time steps, and it receives feedback in the form of rewards based on the actions it takes. The primary goal of the agent is to maximize the total accumulated reward over time. To achieve this, the agent uses different algorithms and techniques to learn the best policy, which is a mapping from states to actions that guides the agent in making decisions.
 
 Model-free RL is particularly useful when the environment is complex, and constructing an accurate model is difficult or computationally expensive.
 Instead of relying on a model, model-free RL agents learn from real interactions with the environment, making them more adaptable and applicable to a broader range of scenarios.
-However, model-free RL also has some challenges. Since it does not use a model, learning can be more sample inefficient~\cite{sutton2018reinforcement}, requiring a large number of interactions with the environment to converge to an optimal policy. Additionally, model-free RL can sometimes struggle with environments that have sparse rewards or deceptive reward structures. Nevertheless, with proper tuning and algorithm selection, model-free RL can be highly effective in a wide range of real-world applications.
+However, model-free RL also has some challenges.
+Since it does not use a model, learning can be more sample inefficient~\cite{sutton2018reinforcement}, requiring a large number of interactions with the environment to converge to an optimal policy. Additionally, model-free RL can sometimes struggle with environments that have sparse rewards or deceptive reward structures. Nevertheless, with proper tuning and algorithm selection, model-free RL can be highly effective in a wide range of real-world applications.
 \subsubsection{Q-Learning}\label{subsubsec:q-learning}
 
 Q-learning is a model-free reinforcement learning algorithm that estimates the action-value function \(Q(s, a)\), representing the expected cumulative reward when taking action \(a\) in state \(s\). It is a widely used algorithm for solving Markov Decision Processes (MDPs) without requiring a model of the environment's dynamics.
@@ -94,8 +88,8 @@ As Q-learning iteratively updates the Q-values, it converges to the optimal acti
 Q-learning is known to be model-free, which means it does not require knowledge of the environment's dynamics or transition probabilities. Instead, it learns from interacting with the environment and experiencing different state-action-reward sequences.
 The Q-learning algorithm is widely used due to its simplicity and ability to handle large state spaces. However, it may suffer from slow convergence in complex environments, and variants like Double Q-learning and Deep Q-Networks (DQNs) have been introduced to address these limitations.
 
-\subsubsection{Deep Q-Networks (DQNs)}
-Deep Q-Networks (DQNs) is a deep learning extension of the Q-learning algorithm. DQNs leverage the power of deep neural networks to approximate the action-value function \(Q(s, a)\) in complex and high-dimensional environments. It was introduced as a breakthrough in combining deep learning and reinforcement learning, particularly in solving Atari 2600 games~\cite{Mnih2013}.
+\subsubsection{DQNs}
+DQNs is a deep learning extension of the Q-learning algorithm. DQNs leverage the power of deep neural networks to approximate the action-value function \(Q(s, a)\) in complex and high-dimensional environments. It was introduced as a breakthrough in combining deep learning and reinforcement learning, particularly in solving Atari 2600 games~\cite{Mnih2013}.
 
 The core idea of DQNs is to use a neural network as a function approximator for the action-value function. The neural network takes the state \(s\) as input and outputs a vector of Q-values, one for each possible action. The action with the highest Q-value is then selected as the agent's action in the given state.
 
@@ -139,8 +133,7 @@ Policy gradient methods employ gradient ascent to update the policy parameters i
 
 \[\nabla_{\theta} J(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \left( \sum_{t'=t}^{T} \gamma^{t'-t} r_{t'} \right) \right]\]
 
-This gradient can be estimated through sampling by interacting with the environment and collecting trajectories.
-The policy parameters are then updated using stochastic gradient ascent:
+This gradient can be estimated through sampling by interacting with the environment and collecting trajectories.The policy parameters are then updated using stochastic gradient ascent:
 
 \[\theta_{\text{new}} = \theta_{\text{old}} + \alpha \nabla_{\theta} J(\theta)\]
 
@@ -183,13 +176,10 @@ PPO's ability to strike a balance between exploration and exploitation makes it 
 
 PPO also offers a robust and efficient solution for parallelizing training across multiple environments, further accelerating learning in complex environments.
 
-Overall, Proximal Policy Optimization (PPO) has become a popular choice for deep reinforcement learning due to its stable performance, ease of implementation, and excellent results across diverse problem domains.
+Overall, PPO has become a popular choice for deep reinforcement learning due to its stable performance, ease of implementation, and excellent results across diverse problem domains.
 
-\subsection{Model-Based Reinforcement Learning}
-
-
-
-Model-based reinforcement learning (RL) is an approach where an agent learns and utilizes an explicit model of the environment to make decisions and plan actions.
+\subsection{Model-Based Reinforcement Learning}\label{subsec:model-based-reinforcement-learning}
+Model-based RL is an approach where an agent learns and utilizes an explicit model of the environment to make decisions and plan actions.
 Unlike model-free RL, which directly learns from experience without constructing a model, model-based RL involves creating a representation of how the environment behaves, including its transition dynamics and reward function.
 This model is then used to simulate possible trajectories and predict the outcomes of different actions.
 
@@ -217,10 +207,7 @@ However, model-based RL also has its challenges:
     \item \textbf{Planning Overhead} : Planning using the model can introduce additional computational overhead, which might limit the real-time applicability of the approach in certain scenarios.
 \end{itemize}
 
-\subsubsection{Dynamic Programming}
-
-
-Dynamic programming is a powerful optimization technique used in computer science and mathematics to solve problems by breaking them down into smaller subproblems and solving each subproblem only once. The solutions to these subproblems are stored and reused when needed, which avoids redundant calculations and leads to more efficient computations.
+\subsubsection{Dynamic Programming} is a powerful optimization technique used in computer science and mathematics to solve problems by breaking them down into smaller subproblems and solving each subproblem only once. The solutions to these subproblems are stored and reused when needed, which avoids redundant calculations and leads to more efficient computations.
 
 The fundamental idea behind dynamic programming is to divide a complex problem into smaller, overlapping subproblems and solve each subproblem just once, storing its solution in a table or array. Then, the solution to the original problem is constructed by combining the solutions of the subproblems.
 
@@ -237,19 +224,17 @@ The process of dynamic programming can be described by the following steps:
     \end{itemize}
 \end{itemize}
 
-Dynamic programming is widely used in various areas of computer science, such as algorithm design, optimization problems, artificial intelligence, and bioinformatics, to efficiently solve complex problems with overlapping subproblems.
-
 \subsubsection{Monte Carlo Tree Search (MCTS)}
 Monte Carlo Tree Search (MCTS) is a popular algorithm used in decision-making and game playing problems, particularly in games with large state spaces and complex branching factors. It is commonly applied in artificial intelligence for games like Go, Chess, and other strategic board games. MCTS combines elements of random sampling (Monte Carlo) with tree-based search to efficiently explore the game tree and make informed decisions.
 
 The MCTS algorithm can be explained in the following steps:
-\begin{itemize}
-    \item \textbf{Selection} : Starting from the root of the search tree, the algorithm traverses the tree by selecting child nodes based on a selection policy, often using Upper Confidence Bound (UCB) or variants like UCT (Upper Confidence Bounds for Trees). The selection policy balances between exploring new nodes and exploiting existing knowledge to focus on promising branches.
+\begin{enumerate}
+    \item \textbf{Selection} : Starting from the root of the search tree, the algorithm traverses the tree by selecting child nodes based on a selection policy, often using Upper Confidence Bound (UCB) or variants like UCT (Upper Confidence bounds for Trees). The selection policy balances between exploring new nodes and exploiting existing knowledge to focus on promising branches.
     \item \textbf{Expansion} : Once a leaf node (a node with unexplored children) is reached, the algorithm expands the tree by adding child nodes representing possible game moves or actions.
     \item \textbf{Simulation (Rollout)} : From the newly added child node, the algorithm performs a Monte Carlo simulation (also known as a rollout) by playing the game randomly until a terminal state (end of the game) is reached. The result of the simulation is a reward or utility value representing the outcome of the game from that state.
     \item \textbf{Backpropagation} : The reward obtained from the simulation is backpropagated up the tree, updating the statistics of each visited node, such as the total reward and the number of visits. This information helps in refining the selection policy and improves the decision-making.
     \item \textbf{Repeated Iteration}: Steps 1 to 4 are repeated for a certain number of iterations or until a predefined computational budget is reached. The more iterations performed, the more refined the search tree becomes, leading to better decisions.
-\end{itemize}
+\end{enumerate}
 
 
 \subsubsection{Model Predictive Control (MPC)}
@@ -285,8 +270,7 @@ There are advantages and disadvantages to using single-agent RL algorithms in au
     \item Model-Based Approaches: Model-based RL algorithms can work effectively in environments where the agent has a complete understanding of the environment's dynamics, enabling accurate predictions.
     \item Sample Efficiency: Single-agent RL algorithms can be more sample-efficient compared to MARL algorithms since they do not involve interactions among multiple agents.
 \end{itemize}
-However, as the number of agents increases, single-agent RL algorithms may struggle to scale effectively, especially when the agents' actions affect each other.
-So we have some disadvantages:
+However, as the number of agents increases, we have some disadvantages:
 \begin{itemize}
     \item Scalability: In complex environments with many agents, single-agent RL algorithms may struggle to scale effectively, especially when the agents' actions affect each other.
     \item Non-Stationary Environments: Single-agent RL assumes a stationary environment, which may not hold true in dynamic settings with multiple agents.
@@ -304,3 +288,6 @@ However, MARL also has some disadvantages:
     \item Communication Overhead: In some MARL algorithms, communication among agents may be required to coordinate actions, introducing additional overhead and complexity.
     \item Partial Observability: In scenarios where agents have limited visibility of the environment or other agents' states, coordinating effectively becomes more challenging.
 \end{itemize}
+As agents interaction became inevitable, several MARL
+algorithms were proposed~\cite{peng2021learning, yang2018mean, johanson2021emergent, tang2020towards, oroojlooyjadid2019review, siekmann1998agent, zhou2020smarts, zhang2019multiagent}.
+However, MARL methods often simplify policy architecture and overlooked small parts of policy update such as the type of probability distribution density function or agents' policy architecture.
