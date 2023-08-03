@@ -11,9 +11,9 @@ Applications of RL in autonomous driving include:
     \item Behavior Prediction: RL algorithms can predict the behavior of other road users, such as pedestrians~\cite{Fintz2022} and human-driven vehicles, to anticipate their actions and plan accordingly.
     \item Lane Keeping and Lane Changing: RL can help autonomous vehicles maintain their lane position and make safe lane-changing maneuvers~\cite{Zhou2022} based on surrounding traffic.
     \item Intersection Negotiation: As seen in the context of this study, RL is applied to enable autonomous vehicles to negotiate intersections~\cite{qian2017autonomous, peng2021learning, wu2020cooperative} effectively, making decisions on when to yield or proceed.
-    \item Optimizing Energy Consumption: RL can be used to optimize the energy consumption of autonomous vehicles, leading to longer battery life and reduced carbon emissions.
-    \item Traffic Flow Optimization: RL can be employed to optimize traffic flow and reduce congestion in urban environments, improving overall transportation efficiency.
-    \item Autonomous Parking: RL can be used to enable autonomous vehicles to park themselves in parking lots or on the street.
+    \item Optimizing Energy Consumption: RL can be used to optimize the energy consumption~\cite{HE2021176, s20082361} of autonomous vehicles, leading to longer battery life and reduced carbon emissions.
+    \item Traffic Flow Optimization: RL can be employed to optimize traffic flow~\cite{WALRAVEN2016203} and reduce congestion in urban environments, improving overall transportation efficiency.
+    \item Autonomous Parking: RL can be used to enable autonomous vehicles to park themselves~\cite{s22176655} in parking lots or on the street.
 \end{itemize}
 The use of RL in autonomous driving continues to evolve rapidly, with ongoing research and development focusing on improving safety, efficiency, and adaptability.
 As autonomous driving technology matures, RL is expected to play a crucial role in enhancing the capabilities of autonomous vehicles and making them more reliable and intelligent on the road.
@@ -148,7 +148,7 @@ Additionally, modern policy gradient methods, such as Proximal Policy Optimizati
 Overall, policy gradient methods have proven to be effective in a wide range of applications, including robotic control, game playing, and natural language processing, where learning directly from high-dimensional observations is crucial.
 
 \subsubsection{Proximal Policy Optimization (PPO)}
-Proximal Policy Optimization (PPO) is a state-of-the-art policy gradient algorithm for reinforcement learning. It addresses the challenges of traditional policy gradient methods, such as high variance and instability, by introducing constraints on policy updates to ensure more stable and controlled learning.
+Proximal Policy Optimization (PPO) is a state-of-the-art policy gradient algorithm for reinforcement learning. It addresses the challenges of traditional policy gradient methods, such as high variance and instability, by introducing constraints on policy updates to ensure more stable and controlled learning~\cite{schulman2017proximal}.
 
 PPO operates by iteratively optimizing a surrogate objective function that approximates the policy's performance while avoiding drastic policy changes that could lead to divergence. The objective function is defined as the clipped surrogate objective:
 

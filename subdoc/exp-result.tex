@@ -31,7 +31,7 @@ The following table~\ref{tab:experiment_setup} describe computer specifications 
 
 \paragraph In this section, we conducted experiments that compare
 our PPO-Beta and standard PPO-Gaussian implementation.
-We used MetaDrive~\cite{li2021metadrive}~\ref{fig:metadrive} for traffic simulator which
+We used MetaDrive~\cite{li2021metadrive} for traffic simulator~\cref{fig:metadrive-fig} which
 support both single agent and multi-agent training with
 integrated reinforcement learning interface (Gym)~\cite{brockman2016openai}. We
 proposed 3 evaluation metrics such as training rewards, safety
@@ -76,17 +76,6 @@ Minimum decay is the minimum decay rate for the action standard deviation.
 K Epoch is the number of epochs for the PPO update.
 Actor learning rate is the learning rate for the actor network.
 Critic learning rate is the learning rate for the critic network.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=12cm]{assets/meta}
-    \caption{MetaDrive Traffic Simulator}
-    \label{fig:metadrive}
-    \small
-    Here in a new line a long description about the figure, in a smaller text
-\end{figure}
-
-
 \section{Reward Shaping}\label{sec:reward-shaping}
 We designed the reward funtion $R$ as:
 \begin{equation}
@@ -108,12 +97,15 @@ $R_{T}$ is the termination reward which can be one of the following:
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{assets/ppo_single}
-    \caption{Comparision of single agent traning by average reward betwwen
-    PPO Beta (proposed method) and standard PPO Gaussian.}\label{fig:single_agent_training_reward}
+    \caption{Comparision of single agent traning}\label{fig:single_agent_training_reward}
+    \medskip
+    \small Comparison by average reward between PPO Beta (proposed method) and standard PPO Gaussian.
+    The training is run for 1 million steps. We can see that PPO Beta has higher reward than standard PPO Gaussian which reach the solving threshold (80) faster.
+    The training performance is also more stable than standard PPO Gaussian.
 \end{figure}
 \paragraph The Gaussian distribution implemented in standard PPO
 has an adjustment nature that can lead to a drop in training
-performance after the update of the value function. This is
+performance after the update of the value function as we can see in ~\cref{fig:single_agent_training_reward}. This is
 because the Gaussian distribution is centered around the
 mean, and when the mean is updated, the distribution must
 shift to accommodate the new mean.
@@ -130,8 +122,10 @@ to changes in the mean.
 \begin{figure}[H]
     \centering
     \includegraphics[width=9cm]{assets/single_success}
-    \caption{Comparision of single agent traning by average success rate betwwen
-    PPO Beta (proposed method) and standard PPO Gaussian.}\label{fig:single_agent_success_rate}
+    \caption{Comparision of single agent traning by average success rate}\label{fig:single_agent_success_rate}
+    \medskip
+    \small We ran the evaluation for 100 episodes.
+    We can see that PPO Beta has higher success rate than standard PPO Gaussian.
 \end{figure}
 In our experiments, we found that the Beta policy learned
 to reach the solving threshold (80) faster than the Gaussian
@@ -142,8 +136,10 @@ continuous control tasks than the Gaussian distribution.
 \begin{figure}[H]
     \centering
     \includegraphics[width=9cm]{assets/single_safety}
-    \caption{Comparision of single agent traning by average safety rate betwwen
-    PPO Beta (proposed method) and standard PPO Gaussian.}\label{fig:figure6}
+    \caption{Comparision of single agent traning by average safety rate}\label{fig:figure6}
+    \medskip
+    \small We ran the evaluation for 100 episodes.
+    We can see that PPO Beta has higher safety rate than standard PPO Gaussian.
 \end{figure}
 We evaluated the performance of PPO-Beta and PPO-Gaussian in a single-agent environment where the training
 agent had difficulty predicting the actions of the other agents,
@@ -167,6 +163,8 @@ difficulty predicting the actions of other agents.
     \centering
     \includegraphics[width=14cm]{assets/multi-reward}
     \caption{Comparision of multi-agent traning by average reward}\label{fig:figure7}
+    \medskip
+    \small Comparison by average reward of 4 agents between PPO Beta (proposed method) and standard PPO Gaussian. The training is run for 700k steps. PPO with Gaussian distribution struggles to learn the environment and the reward is unstable.
 \end{figure}
 
 \paragraph We train the multi-agent environment with 4 agents.

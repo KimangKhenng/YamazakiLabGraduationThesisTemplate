@@ -102,15 +102,13 @@ Specifically, if $\alpha > 1$ and $\beta > 1$, then $\alpha - 1$ and $\beta - 1$
 This interpretation is useful when modeling probabilities or proportions in the context of the policy gradient method.
 
 \section{Beta Policy}\label{sec:beta-policy}
-\paragraph We propose a straightforward neural network architecture, specifically a Multilayer Perceptron (MLP), with 2 hidden layers each having a size of 256 neurons. This neural network is then divided into two separate channels, each having a hidden layer with 256 neurons. These channels are designed to predict values for steering angle and acceleration, respectively, in order to control the vehicle.
+\paragraph We propose a straightforward neural network architecture, specifically a Multilayer Perceptron (MLP), with 2 hidden layers each having a size of 256 neurons as we can see in~\cref{fig:beta-policy}. This neural network is then divided into two separate channels, each having a hidden layer with 256 neurons. These channels are designed to predict values for steering angle and acceleration, respectively, in order to control the vehicle.
 
 The implementation of the neural network is carried out using PyTorch~\cite{paszke2019pytorch}, a popular deep learning library. The input to the network consists of ego states, which include relevant information about the vehicle in relation to its environment, such as velocity, checkpoint positions, time, and distance to the destination. Additionally, LiDAR data from the left, right, and front sides of the vehicle is collected and fed into the network. LiDAR is a sensing technology used in many autonomous vehicles, and its utilization allows the proposed algorithm to be easily adapted and applied in real-world scenarios.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=12cm]{assets/beta_policy}
-    \caption{Beta Policy}\label{fig:figure3}
-    \small
-    Here in a new line a long description about the figure, in a smaller text
+    \caption{Beta Policy}\label{fig:beta-policy}
 \end{figure}
 
 The final layer that output these values uses softplus
@@ -134,8 +132,8 @@ The advantage function is defined as:
 \begin{equation}
     A^{\pi_{\theta_{k}}}(s_{t},s_{t+1}, A_{j}, A_{j+1}, R_{G}) = R_{G} +  Q(s_{t+1}, A_{j+1}) - Q(s_{t}, A_{j})\label{eq:equation7}
 \end{equation}
-where $R_{G}$ is the global reward defined as $R_{G} = \frac{1}{k} \sum_{k}^{i=0}R_{k} $
-whose $k$ is the individual reward calculated by Monte Carlo Method~\cite{sutton2018reinforcement}. $Q(\star)$ is the critics part which is popularized by Asynchronous Advantage Actor Critic (A3C)~\cite{mnih2016asynchronous} and also adopted by PPO~\cite{schulman2017proximal}
+where $R_{G}$ is the global reward defined as $R_{G} = \frac{1}{k} \sum_{i=0}^{k}R_{k} $
+whose $k$ is the individual reward calculated by Monte Carlo Method~\cite{sutton2018reinforcement}.  $Q(\star)$ is the critics part which is popularized by Asynchronous Advantage Actor Critic (A3C)~\cite{mnih2016asynchronous} and also adopted by PPO~\cite{schulman2017proximal}
 , $Q(s_{t}, A_{j})$ is the Q-value of taking action $A_{j}$ in state $s_{t}$, and $A_{j+1}$ is the action sampled from the policy $\pi$ in state $s_{t+1}$.
 \begin{figure}[!h]
     \centering
