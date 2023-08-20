@@ -1,22 +1,22 @@
 \section{Reinforcement Learning in Traffic Intersection}\label{sec:reinforcement-learning-in-traffic-intersection}
 \paragraph RL has shown great promise in enabling vehicles to make intelligent decisions on the road.
-RL algorithms allow autonomous vehicles to learn from their interactions with the environment, such as other vehicles, pedestrians, traffic lights, and road conditions. This learning process helps the vehicles adapt to changing situations and make appropriate decisions in real-time.
+RL algorithms allow AVs to learn from their interactions with the environment, such as other vehicles, pedestrians, traffic lights, and road conditions. This learning process helps the vehicles adapt to changing situations and make appropriate decisions in real-time.
 
 One of the significant advantages of RL in autonomous driving is its ability to handle complex and uncertain environments.
-RL agents can navigate through various traffic scenarios, including intersections, merging lanes, and lane-changing maneuvers~\cite{Zhou2022, Wang2022}, by learning optimal policies based on trial and error. RL also allows autonomous vehicles to adapt to diverse driving conditions, such as different weather conditions and traffic patterns.
+RL agents can navigate through various traffic scenarios, including intersections, merging lanes, and lane-changing maneuvers~\cite{Zhou2022, Wang2022}, by learning optimal policies based on trial and error. RL also allows AVs to adapt to diverse driving conditions, such as different weather conditions and traffic patterns.
 
 Applications of RL in autonomous driving include:
 \begin{itemize}
-    \item Trajectory Planning: RL can be used to plan safe and efficient trajectories for autonomous vehicles, robots~\cite{9940484, 10.3389/fnbot.2022.883562}, considering various factors such as traffic density, speed limits, and road conditions.
+    \item Trajectory Planning: RL can be used to plan safe and efficient trajectories for AVs, robots~\cite{9940484, 10.3389/fnbot.2022.883562}, considering various factors such as traffic density, speed limits, and road conditions.
     \item Behavior Prediction: RL algorithms can predict the behavior of other road users, such as pedestrians~\cite{Fintz2022} and human-driven vehicles, to anticipate their actions and plan accordingly.
-    \item Lane Keeping and Lane Changing: RL can help autonomous vehicles maintain their lane position and make safe lane-changing maneuvers~\cite{Zhou2022} based on surrounding traffic.
-    \item Intersection Negotiation: As seen in the context of this study, RL is applied to enable autonomous vehicles to negotiate intersections~\cite{qian2017autonomous, peng2021learning, wu2020cooperative} effectively, making decisions on when to yield or proceed.
-    \item Optimizing Energy Consumption: RL can be used to optimize the energy consumption~\cite{HE2021176, s20082361} of autonomous vehicles, leading to longer battery life and reduced carbon emissions.
+    \item Lane Keeping and Lane Changing: RL can help AVs maintain their lane position and make safe lane-changing maneuvers~\cite{Zhou2022} based on surrounding traffic.
+    \item Intersection Negotiation: As seen in the context of this study, RL is applied to enable AVs to negotiate intersections~\cite{qian2017autonomous, peng2021learning, wu2020cooperative} effectively, making decisions on when to yield or proceed.
+    \item Optimizing Energy Consumption Efficiency: RL can be used to optimize the energy consumption~\cite{HE2021176, s20082361} of AVs, leading to longer battery life and reduced carbon emissions.
     \item Traffic Flow Optimization: RL can be employed to optimize traffic flow~\cite{WALRAVEN2016203} and reduce congestion in urban environments, improving overall transportation efficiency.
-    \item Autonomous Parking: RL can be used to enable autonomous vehicles to park themselves~\cite{s22176655} in parking lots or on the street.
+    \item Autonomous Parking: RL can be used to enable AVs to park themselves~\cite{s22176655} in parking lots or on the street.
 \end{itemize}
 The use of RL in autonomous driving continues to evolve rapidly, with ongoing research and development focusing on improving safety, efficiency, and adaptability.
-As autonomous driving technology matures, RL is expected to play a crucial role in enhancing the capabilities of autonomous vehicles and making them more reliable and intelligent on the road.
+As autonomous driving tecnology matures, RL is expected to play a crucial role in enhancing the capabilities of AVs and making them more reliable and intelligent on the road.
 Many works try to improve transportation safety and
 efficiency at the intersection by integrating various RL
 techniques such as intelligent traffic light (sometimes known
@@ -49,7 +49,7 @@ Each class has several sub-branches that address specific challenges and require
 \subsection{Model-Free Reinforcement Learning}\label{subsec:model-free-reinforcement-learning}
 Most world problems evolve round uncertainty where agents often have incomplete view of the environment.
 This is where model-free RL emerges.
-Model-free RL is a type of reinforcement learning approach where an agent learns to make decisions and take actions in an environment without explicitly building a model of the environment. In traditional RL, an agent typically constructs a model that represents the transition dynamics and rewards of the environment. This model helps the agent to simulate and plan future actions to make decisions. However, in model-free RL, the agent directly learns from experience through trial and error without explicitly constructing a model.
+Model-free RL is a type of RL approach where an agent learns to make decisions and take actions in an environment without explicitly building a model of the environment. In traditional RL, an agent typically constructs a model that represents the transition dynamics and rewards of the environment. This model helps the agent to simulate and plan future actions to make decisions. However, in model-free RL, the agent directly learns from experience through trial and error without explicitly constructing a model.
 
 In model-free RL, the agent interacts with the environment over multiple episodes or time steps, and it receives feedback in the form of rewards based on the actions it takes. The primary goal of the agent is to maximize the total accumulated reward over time. To achieve this, the agent uses different algorithms and techniques to learn the best policy, which is a mapping from states to actions that guides the agent in making decisions.
 
@@ -59,7 +59,7 @@ However, model-free RL also has some challenges.
 Since it does not use a model, learning can be more sample inefficient~\cite{sutton2018reinforcement}, requiring a large number of interactions with the environment to converge to an optimal policy. Additionally, model-free RL can sometimes struggle with environments that have sparse rewards or deceptive reward structures. Nevertheless, with proper tuning and algorithm selection, model-free RL can be highly effective in a wide range of real-world applications.
 \subsubsection{Q-Learning}\label{subsubsec:q-learning}
 
-Q-learning is a model-free reinforcement learning algorithm that estimates the action-value function \(Q(s, a)\), representing the expected cumulative reward when taking action \(a\) in state \(s\). It is a widely used algorithm for solving Markov Decision Processes (MDPs) without requiring a model of the environment's dynamics.
+Q-learning is a model-free RL algorithm that estimates the action-value function \(Q(s, a)\), representing the expected cumulative reward when taking action \(a\) in state \(s\). It is a widely used algorithm for solving Markov Decision Processes (MDPs) without requiring a model of the environment's dynamics.
 
 The Q-value is updated iteratively using the Bellman equation:
 
@@ -89,7 +89,7 @@ Q-learning is known to be model-free, which means it does not require knowledge 
 The Q-learning algorithm is widely used due to its simplicity and ability to handle large state spaces. However, it may suffer from slow convergence in complex environments, and variants like Double Q-learning and Deep Q-Networks (DQNs) have been introduced to address these limitations.
 
 \subsubsection{DQNs}
-DQNs is a deep learning extension of the Q-learning algorithm. DQNs leverage the power of deep neural networks to approximate the action-value function \(Q(s, a)\) in complex and high-dimensional environments. It was introduced as a breakthrough in combining deep learning and reinforcement learning, particularly in solving Atari 2600 games~\cite{Mnih2013}.
+DQNs is a deep learning extension of the Q-learning algorithm. DQNs leverage the power of deep neural networks to approximate the action-value function \(Q(s, a)\) in complex and high-dimensional environments. It was introduced as a breakthrough in combining deep learning and RL, particularly in solving Atari 2600 games~\cite{Mnih2013}.
 
 The core idea of DQNs is to use a neural network as a function approximator for the action-value function. The neural network takes the state \(s\) as input and outputs a vector of Q-values, one for each possible action. The action with the highest Q-value is then selected as the agent's action in the given state.
 
@@ -121,7 +121,7 @@ DQNs have demonstrated remarkable success in various tasks, including playing At
 However, DQNs also have some challenges, such as the tendency to overestimate Q-values and difficulties in handling continuous action spaces. Several extensions, such as Double DQNs and Dueling DQNs, have been proposed to address these limitations and further improve performance.
 
 \subsubsection{Policy Gradient Methods}
-Policy Gradient Methods are a class of reinforcement learning algorithms that directly optimize the policy of an agent to maximize the expected cumulative reward. Unlike value-based methods that estimate the action-value function \(Q(s, a)\), policy gradient methods aim to learn the policy \(\pi(a|s)\), which is a mapping from states \(s\) to actions \(a\).
+Policy Gradient Methods are a class of RL algorithms that directly optimize the policy of an agent to maximize the expected cumulative reward. Unlike value-based methods that estimate the action-value function \(Q(s, a)\), policy gradient methods aim to learn the policy \(\pi(a|s)\), which is a mapping from states \(s\) to actions \(a\).
 
 The policy is typically represented as a parametric function, such as a neural network, with trainable parameters \(\theta\). The objective of policy gradient methods is to find the optimal parameters \(\theta^*\) that maximize the expected reward:
 
@@ -148,7 +148,7 @@ Additionally, modern policy gradient methods, such as Proximal Policy Optimizati
 Overall, policy gradient methods have proven to be effective in a wide range of applications, including robotic control, game playing, and natural language processing, where learning directly from high-dimensional observations is crucial.
 
 \subsubsection{Proximal Policy Optimization (PPO)}
-Proximal Policy Optimization (PPO) is a state-of-the-art policy gradient algorithm for reinforcement learning. It addresses the challenges of traditional policy gradient methods, such as high variance and instability, by introducing constraints on policy updates to ensure more stable and controlled learning~\cite{schulman2017proximal}.
+Proximal Policy Optimization (PPO) is a state-of-the-art policy gradient algorithm for RL. It addresses the challenges of traditional policy gradient methods, such as high variance and instability, by introducing constraints on policy updates to ensure more stable and controlled learning~\cite{schulman2017proximal}.
 
 PPO operates by iteratively optimizing a surrogate objective function that approximates the policy's performance while avoiding drastic policy changes that could lead to divergence. The objective function is defined as the clipped surrogate objective:
 
@@ -176,7 +176,7 @@ PPO's ability to strike a balance between exploration and exploitation makes it 
 
 PPO also offers a robust and efficient solution for parallelizing training across multiple environments, further accelerating learning in complex environments.
 
-Overall, PPO has become a popular choice for deep reinforcement learning due to its stable performance, ease of implementation, and excellent results across diverse problem domains.
+Overall, PPO has become a popular choice for deep RL due to its stable performance, ease of implementation, and excellent results across diverse problem domains.
 
 \subsection{Model-Based Reinforcement Learning}\label{subsec:model-based-reinforcement-learning}
 Model-based RL is an approach where an agent learns and utilizes an explicit model of the environment to make decisions and plan actions.

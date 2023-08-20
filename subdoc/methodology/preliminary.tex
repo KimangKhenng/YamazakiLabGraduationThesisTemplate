@@ -10,7 +10,7 @@ The MDP definition can be interpreted as follows:
     \item The reward $R(s, a)$ represents the amount of reward the agent receives after taking action $a$ in state $s$.
     \item The discount factor $\gamma$ represents how much the agent values future rewards relative to immediate rewards.
 \end{itemize}
-Decentralized Partially Observable Markov Decision Processes (Dec-POMDPs) are a class of multi-agent reinforcement learning problems where multiple agents collectively aim to maximize a global objective function while facing uncertainty in a partially observable environment.
+Decentralized Partially Observable Markov Decision Processes (Dec-POMDPs) are a class of MARL problems where multiple agents collectively aim to maximize a global objective function while facing uncertainty in a partially observable environment.
 
 \subsection{Elements of Dec-POMDPs:}\label{subsec:elements-of-dec-pomdps:}
 \begin{enumerate}
@@ -25,7 +25,7 @@ Decentralized Partially Observable Markov Decision Processes (Dec-POMDPs) are a 
 \end{enumerate}
 
 \section{Gaussian Distribution}\label{sec:gaussian-distribution}
-The Gaussian distribution, also known as the normal distribution, is a continuous probability distribution widely used to model random variables in various real-world scenarios. It is characterized by its mean $\mu$ and variance $\sigma^2$. The probability density function (PDF) of a Gaussian distribution is given by:
+The Gaussian distribution~\cref{fig:guassian-distribution}, also known as the normal distribution, is a continuous probability distribution widely used to model random variables in various real-world scenarios. It is characterized by its mean $\mu$ and variance $\sigma^2$. The probability density function (PDF) of a Gaussian distribution is given by:
 
 \begin{equation}
     f(x | \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}},\label{eq:equation}
@@ -37,7 +37,7 @@ The Gaussian distribution is symmetric around its mean, and its shape is determi
 \begin{figure}[!h]
     \centering
     \includegraphics[width=12cm]{assets/normal}
-    \caption{Normal Distribution}\label{fig:figure}
+    \caption{Normal Distribution}\label{fig:guassian-distribution}
 \end{figure}
 
 \section{Policy Gradient Method with Gaussian Approximation:}\label{sec:policy-gradient-method-with-gaussian-approximation:}
@@ -85,7 +85,7 @@ The mode of the distribution is at $\frac{\alpha - 1}{\alpha + \beta - 2}$.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=12cm]{assets/beta}
-    \caption{Beta Distribution}\label{fig:figure2}
+    \caption{Beta Distribution}\label{fig:beta-distribution}
 \end{figure}
 
 \section{Policy Gradient Method with Beta Distribution:}\label{sec:policy-gradient-method-with-beta-distribution:}
@@ -104,7 +104,7 @@ This interpretation is useful when modeling probabilities or proportions in the 
 \section{Beta Policy}\label{sec:beta-policy}
 \paragraph We propose a straightforward neural network architecture, specifically a Multilayer Perceptron (MLP), with 2 hidden layers each having a size of 256 neurons as we can see in~\cref{fig:beta-policy}. This neural network is then divided into two separate channels, each having a hidden layer with 256 neurons. These channels are designed to predict values for steering angle and acceleration, respectively, in order to control the vehicle.
 
-The implementation of the neural network is carried out using PyTorch~\cite{paszke2019pytorch}, a popular deep learning library. The input to the network consists of ego states, which include relevant information about the vehicle in relation to its environment, such as velocity, checkpoint positions, time, and distance to the destination. Additionally, LiDAR data from the left, right, and front sides of the vehicle is collected and fed into the network. LiDAR is a sensing technology used in many autonomous vehicles, and its utilization allows the proposed algorithm to be easily adapted and applied in real-world scenarios.
+The implementation of the neural network is carried out using PyTorch~\cite{paszke2019pytorch}, a popular deep learning library. The input to the network consists of ego states, which include relevant information about the vehicle in relation to its environment, such as velocity, checkpoint positions, time, and distance to the destination. Additionally, LiDAR data from the left, right, and front sides of the vehicle is collected and fed into the network. LiDAR is a sensing technology used in many AVs, and its utilization allows the proposed algorithm to be easily adapted and applied in real-world scenarios.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=12cm]{assets/beta_policy}
