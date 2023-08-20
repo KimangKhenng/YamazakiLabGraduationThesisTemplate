@@ -15,8 +15,11 @@
 \usepackage{lscape}
 \usepackage{framed}
 \usepackage{url}
+%\usepackage{easyfig}
 %\usepackage{hyperref}
 \usepackage{cleveref}
+\Crefformat{figure}{#2Fig.~#1#3}
+\Crefmultiformat{figure}{Figs.~#2#1#3}{ and~#2#1#3}{, #2#1#3}{ and~#2#1#3}
 \usepackage{tabularx}
 % どうしてもhereにいれたい場合はHを使う
 \usepackage{here}
