@@ -3,7 +3,7 @@
 
 
 \section{Experimental Setup}\label{sec:experimental-setup}
-The following table~\ref{tab:experiment_setup} describe computer specifications used in the experiment.
+The following table~\Cref{tab:experiment_setup} describe computer specifications used in the experiment.
 \begin{table}[htbp]
     \centering
     \caption{Experiment Setup with PC Specifications}
@@ -30,8 +30,8 @@ The following table~\ref{tab:experiment_setup} describe computer specifications 
 \end{table}
 
 \paragraph In this section, we conducted experiments that compare
-our PPO-Beta and standard PPO-Gaussian implementation.
-We used MetaDrive~\cite{li2021metadrive} for traffic simulator~\cref{fig:metadrive-fig} which
+our PPO Beta and standard PPO Gaussian implementation.
+We used MetaDrive~\cite{li2021metadrive} for traffic simulator~\Cref{fig:metadrive-fig} which
 support both single agent and multi-agent training with
 integrated RL interface (Gym)~\cite{brockman2016openai}. We
 proposed 3 evaluation metrics such as training rewards, safety
@@ -76,6 +76,7 @@ Minimum decay is the minimum decay rate for the action standard deviation.
 K Epoch is the number of epochs for the PPO update.
 Actor learning rate is the learning rate for the actor network.
 Critic learning rate is the learning rate for the critic network.
+\pagebreak
 \section{Reward Shaping}\label{sec:reward-shaping}
 We designed the reward funtion $R$ as:
 \begin{equation}
@@ -105,7 +106,7 @@ $R_{T}$ is the termination reward which can be one of the following:
 \end{figure}
 \paragraph The Gaussian distribution implemented in standard PPO
 has an adjustment nature that can lead to a drop in training
-performance after the update of the value function as we can see in ~\cref{fig:single_agent_training_reward}. This is
+performance after the update of the value function as we can see in ~\Cref{fig:single_agent_training_reward}. This is
 because the Gaussian distribution is centered around the
 mean, and when the mean is updated, the distribution must
 shift to accommodate the new mean.
@@ -129,31 +130,30 @@ to changes in the mean.
 \end{figure}
 In our experiments, we found that the Beta policy learned
 to reach the solving threshold (80) faster than the Gaussian
-policy. Additionally, the average score of the PPO-Beta agent
-was slightly better than the PPO-Gaussian agent. These results
+policy. Additionally, the average score of the PPO Beta agent
+was slightly better than the PPO Gaussian agent. These results
 suggest that the Beta distribution is a more effective choice for
 continuous control tasks than the Gaussian distribution.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=9cm]{assets/single_safety}
-    \caption{Comparision of single agent traning by average safety rate}\label{fig:figure6}
+    \includegraphics[width=8cm]{assets/single_safety}
+    \caption{Comparision of single agent traning by average safety rate}\label{fig:safety_rate}
     \medskip
     \small We ran the evaluation for 100 episodes.
     We can see that PPO Beta has higher safety rate than standard PPO Gaussian.
 \end{figure}
-We evaluated the performance of PPO-Beta and PPO-Gaussian in a single-agent environment where the training
+We evaluated the performance of PPO Beta and PPO Gaussian in a single-agent environment where the training
 agent had difficulty predicting the actions of the other agents,
 which were controlled by non-player characters (NPCs). We
-found that PPO-Beta outperformed PPO-Gaussian on both the
-success and safety rates after running for 100 episodes. As
-shown in~\cref{fig:figure6}, both success rates were below 50\%.
+found that PPO Beta outperformed PPO Gaussian on both the
+success~\Cref{fig:single_agent_success_rate} and safety rates~\Cref{fig:safety_rate} after running for 100 episodes. As
+shown in~\Cref{fig:figure6}, both success rates were below 50\%.
 This is because the single-agent environment is inherently difficult,
-as the training agent cannot coordinate its actions with the
-other agents.
-Despite the difficulty of the environment, PPO-Beta was able to learn to dodge the incoming vehicle better
-than PPO-Gaussian. This is evident in the safety rate, which
-was 10\% higher for PPO-Beta than for PPO-Gaussian. These
-results suggest that PPO-Beta is a more effective choice for
+as the training agent cannot coordinate its actions with the other agents.
+Despite the difficulty of the environment, PPO Beta was able to learn to dodge the incoming vehicle better
+than PPO Gaussian. This is evident in the safety rate, which
+was 10\% higher for PPO Beta than for PPO Gaussian. These
+results suggest that PPO Beta is a more effective choice for
 single-agent environments where the training agent has
 difficulty predicting the actions of other agents.
 
@@ -168,7 +168,7 @@ difficulty predicting the actions of other agents.
 \end{figure}
 
 \paragraph We train the multi-agent environment with 4 agents.
-Here is the interpretation of the result in \cref{fig:figure7}.
+Here is the interpretation of the result in \Cref{fig:figure7}.
 \subsection{Multi-agent PPO Beta}\label{subsec:multi-agent-ppo-beta}
 \begin{itemize}
     \item \textbf{Average Reward:} The average reward obtained by the agents over all episodes is approximately 120. This indicates that, on average, the agents perform reasonably well in the environment when using the PPO beta approach.

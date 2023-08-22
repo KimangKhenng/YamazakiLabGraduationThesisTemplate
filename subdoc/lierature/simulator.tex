@@ -3,7 +3,7 @@
 
 \subsection{Gym-Graph-Traffic}\label{subsec:gym-graph-traffic}
 \paragraph Gym-graph-traffic is an OpenAI Gym-compatible road traffic simulator that provides a platform for studying and experimenting with various traffic scenarios. To use the simulator, users can easily install it from the provided GitHub repository\footnote{https://github.com/rltraffic/gym-graph-traffic} and run examples using Python scripts like \emph{minimal.py}. The simulator's configuration is customizable through parameters available in the \emph{params.py} file, allowing users to adjust aspects such as episode duration, step length, and possible actions per intersection.
-\begin{figure}[H]
+\begin{figure}[!h]
     \centering
     \includegraphics[width=10cm]{assets/gym-traffic}
     \caption{Gym-graph-traffic Simulator}
@@ -11,7 +11,7 @@
     \small
     General interface of Gym-graph-traffic that allows us to simulate urban environment with a lot of entities
 \end{figure}
-The simulator ~\cref{fig:gym-traffic} operates on different time units, such as Experiment, Episode, Step, and Update, each representing specific durations in real-time seconds. Actions in the simulator are represented as integers and can be translated to a base 10 representation. By providing observation vectors for the average number of cars and average speed per road segment, users can monitor and evaluate traffic performance. With the option to choose from several preset road network configurations, the simulator offers flexibility in studying various traffic environments. Although not yet supporting Gym-like rendering, rendering options can still be configured within the \emph{params.py} file. Overall, Gym-Graph-Traffic serves as a valuable tool for researchers and developers interested in traffic management and AV behavior.
+The simulator ~\Cref{fig:gym-traffic} operates on different time units, such as Experiment, Episode, Step, and Update, each representing specific durations in real-time seconds. Actions in the simulator are represented as integers and can be translated to a base 10 representation. By providing observation vectors for the average number of cars and average speed per road segment, users can monitor and evaluate traffic performance. With the option to choose from several preset road network configurations, the simulator offers flexibility in studying various traffic environments. Although not yet supporting Gym-like rendering, rendering options can still be configured within the \emph{params.py} file. Overall, Gym-Graph-Traffic serves as a valuable tool for researchers and developers interested in traffic management and AV behavior.
 
 Gym-Graph-Traffic may not be suitable for MARL research due to its design and focus on single-agent traffic simulation. The environment is primarily centered around road traffic simulation with a single ego-vehicle navigating through the traffic scenarios. While it provides valuable features for studying the behavior of a single agent in various traffic situations, it lacks native support for handling multiple agents and their interactions.
 
@@ -38,23 +38,23 @@ The agent can interact with the environment by taking actions, receiving observa
 
 Overall, highway-env offers a comprehensive set of environments for researchers and developers to study and develop autonomous driving algorithms and tactical decision-making strategies.
 
-Highway-env~\cref{fig:figure9} may not be ideal for MARL research due to its primary focus on single-agent driving scenarios. The environment is specifically designed for studying the behavior of a single ego-vehicle navigating through various highway and road scenarios. While it provides a range of driving challenges for a lone agent, it lacks built-in support and mechanisms for handling multiple agents and their interactions.
+Highway-env~\Cref{fig:figure9} may not be ideal for MARL research due to its primary focus on single-agent driving scenarios. The environment is specifically designed for studying the behavior of a single ego-vehicle navigating through various highway and road scenarios. While it provides a range of driving challenges for a lone agent, it lacks built-in support and mechanisms for handling multiple agents and their interactions.
 
 In MARL research, environments need to accommodate complex interactions between multiple agents, where the actions of each agent can influence the behavior of others. Highway-env is not explicitly designed to handle such multi-agent dynamics, and modifying it to support multiple agents could be non-trivial and may not produce optimal results.
 
 For comprehensive MARL research, specialized environments that explicitly cater to multi-agent scenarios, such as cooperative or competitive driving situations, are more appropriate. These environments should facilitate communication and coordination between agents, support joint learning, and provide tools for studying emergent behaviors arising from multi-agent interactions.
 
 \subsection{MetaDrive}\label{subsec:metadrive}
-\paragraph
-MetaDrive~\cite{li2021metadrive} is a driving simulator designed for generalizable RL research\footnote{https://github.com/metadriverse/metadrive}. It supports generating diverse driving scenarios with various road maps and traffic settings, making it suitable for studying RL agents' generalization capabilities. The simulator is \cref{fig:metadrive-fig} lightweight, easy to install, and can achieve up to 300 FPS on a standard PC. It provides realistic physics simulation and multiple sensory inputs, including Lidar, RGB images, top-down semantic maps, and first-person view images. Examples of different driving scenarios are provided, such as Single Agent Environment, Multi-Agent Environment, and Real Environment, along with instructions on how to run them. To build the RL environment, users can code in the Gymnasium format using the provided MetaDriveEnv class.
-\begin{figure}[H]
+\paragraph MetaDrive~\cite{li2021metadrive} is a driving simulator designed for generalizable RL research\footnote{https://github.com/metadriverse/metadrive}. It supports generating diverse driving scenarios with various road maps and traffic settings, making it suitable for studying RL agents' generalization capabilities. The simulator is \Cref{fig:metadrive-fig} lightweight, easy to install, and can achieve up to 300 FPS on a standard PC. It provides realistic physics simulation and multiple sensory inputs, including Lidar, RGB images, top-down semantic maps, and first-person view images. Examples of different driving scenarios are provided, such as Single Agent Environment, Multi-Agent Environment, and Real Environment, along with instructions on how to run them. To build the RL environment, users can code in the Gymnasium format using the provided MetaDriveEnv class.
+\begin{figure}[!h]
     \centering
     \includegraphics[width=10cm]{assets/meta-screen}
     \caption{MetaDrive Simulator}
     \small
     First person view of MetaDrive simulator showing mini-map, first person view, and top-down view\label{fig:metadrive-fig}
 \end{figure}
-MetaDrive stands out as an excellent choice for MARL research due to its provision of rich observations and robust multi-agent support. In the context of MARL, having access to diverse and comprehensive observations is crucial for agents to effectively learn and adapt in complex environments. MetaDrive addresses this need by offering multiple sensory inputs, including Lidar, RGB images, top-down semantic maps, and first-person view (FPV) images. These varied observation modalities enable agents to perceive the environment from different perspectives, promoting a more comprehensive understanding of the driving scenarios.
+
+\paragraph MetaDrive stands out as an excellent choice for MARL research as in~\Cref{tab:comparison} due to its provision of rich observations and robust multi-agent support. In the context of MARL, having access to diverse and comprehensive observations is crucial for agents to effectively learn and adapt in complex environments. MetaDrive addresses this need by offering multiple sensory inputs, including Lidar, RGB images, top-down semantic maps, and first-person view (FPV) images. These varied observation modalities enable agents to perceive the environment from different perspectives, promoting a more comprehensive understanding of the driving scenarios.
 
 \begin{table}[H]
     \centering
@@ -83,7 +83,7 @@ MetaDrive stands out as an excellent choice for MARL research due to its provisi
         \bottomrule
     \end{tabularx}
 \end{table}
-Furthermore, MetaDrive's multi-agent support is a key strength that sets it apart. In multi-agent environments, interactions and cooperation between agents play a significant role in determining their overall performance and behavior. MetaDrive facilitates the simulation of multiple agents simultaneously, allowing researchers to study cooperative, competitive, and mixed interactions between agents. This capability is invaluable for investigating complex real-world scenarios where multiple AVs, pedestrians, and traffic participants interact dynamically.
+\paragraph Furthermore, MetaDrive's multi-agent support is a key strength that sets it apart. In multi-agent environments, interactions and cooperation between agents play a significant role in determining their overall performance and behavior. MetaDrive facilitates the simulation of multiple agents simultaneously, allowing researchers to study cooperative, competitive, and mixed interactions between agents. This capability is invaluable for investigating complex real-world scenarios where multiple AVs, pedestrians, and traffic participants interact dynamically.
 By combining rich observations with multi-agent support, MetaDrive provides a versatile platform for exploring diverse driving scenarios, such as intersection negotiations, cooperative lane merging, and complex traffic situations. The ability to model and train agents in such realistic and interactive environments fosters the development of more robust and generalizable MARL algorithms, contributing significantly to the advancement of autonomous driving systems and intelligent transportation technologies. As a result, MetaDrive emerges as a superior option for researchers seeking a comprehensive and effective tool for MARL research in driving and traffic-related domains.
 
 

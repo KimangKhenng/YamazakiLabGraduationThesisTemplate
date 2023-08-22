@@ -12,13 +12,24 @@
 %  行送りの再定義
 %--------------------------------------------------------------
 \renewcommand{\baselinestretch}{1.4}
-\renewcommand{\figurename}{Fig.}
+\Crefformat{figure}{#2Fig.~#1#3}
+\Crefmultiformat{figure}{Figs.~#2#1#3}{ and~#2#1#3}{, #2#1#3}{ and~#2#1#3}
 
 %--------------------------------------------------------
 %  少ない行で設定できるものはここに書く
 %--------------------------------------------------------
 % 関連図書 -> 参考文献に変える設定
 \renewcommand{\bibname}{References}
+%\addto\captionsenglish{\renewcommand{\refname}{References}}
+
+% Renaming floats with caption
+%\captionsetup{%
+%  figurename=Fig.,
+%  tablename=Tab.,
+%  refname=References
+%}
+
+%\renewcommand{\refname}{References}
 
 \newenvironment{gratitude}{
   \newpage
@@ -44,3 +55,18 @@
   \clearpage
   \pagenumbering{arabic}
 }
+
+\def\@citex[#1]#2{%
+  \let\@citea\@empty
+  \@cite{\@for\@citeb:=#2\do
+    {\@citea\def\@citea{], [}%
+     \edef\@citeb{\expandafter\@firstofone\@citeb\@empty}%
+     \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi
+     \@ifundefined{b@\@citeb}{\mbox{\reset@font\bfseries ?}%
+       \G@refundefinedtrue
+       \@latex@warning
+         {Citation `\@citeb' on page \thepage \space undefined}}%
+       {\hbox{\csname b@\@citeb\endcsname}}}}{#1}}
+
+\def\citepunct{], [}
+\def\citedash{]--[}

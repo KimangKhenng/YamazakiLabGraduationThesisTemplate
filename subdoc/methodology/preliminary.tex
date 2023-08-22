@@ -23,7 +23,7 @@ Decentralized Partially Observable Markov Decision Processes (Dec-POMDPs) are a 
     \item \textbf{Global Objective Function:} The goal of the agents is to optimize a global objective function $J(\mathbf{a})$ that captures the overall mission or task. This objective function depends on the collective actions of all agents and may involve cooperation and coordination.
 
 \end{enumerate}
-
+\pagebreak
 \section{Gaussian Distribution}\label{sec:gaussian-distribution}
 The Gaussian distribution~\Cref{fig:guassian-distribution}, also known as the normal distribution, is a continuous probability distribution widely used to model random variables in various real-world scenarios. It is characterized by its mean $\mu$ and variance $\sigma^2$. The probability density function (PDF) of a Gaussian distribution is given by:
 
@@ -82,9 +82,9 @@ where $\Gamma(\cdot)$ is the gamma function.
 The Beta distribution is asymmetric and its shape is determined by the values of $\alpha$ and $\beta$. When both $\alpha$ and $\beta$ are greater than 1, the distribution is unimodal and skewed.
 The mode of the distribution is at $\frac{\alpha - 1}{\alpha + \beta - 2}$.
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=12cm]{assets/beta}
+    \includegraphics[width=10cm]{assets/beta}
     \caption{Beta Distribution}\label{fig:beta-distribution}
 \end{figure}
 
@@ -102,15 +102,13 @@ Specifically, if $\alpha > 1$ and $\beta > 1$, then $\alpha - 1$ and $\beta - 1$
 This interpretation is useful when modeling probabilities or proportions in the context of the policy gradient method.
 
 \section{Beta Policy}\label{sec:beta-policy}
-\paragraph We propose a straightforward neural network architecture, specifically a Multilayer Perceptron (MLP), with 2 hidden layers each having a size of 256 neurons as we can see in~\cref{fig:beta-policy}. This neural network is then divided into two separate channels, each having a hidden layer with 256 neurons. These channels are designed to predict values for steering angle and acceleration, respectively, in order to control the vehicle.
-
-The implementation of the neural network is carried out using PyTorch~\cite{paszke2019pytorch}, a popular deep learning library. The input to the network consists of ego states, which include relevant information about the vehicle in relation to its environment, such as velocity, checkpoint positions, time, and distance to the destination. Additionally, LiDAR data from the left, right, and front sides of the vehicle is collected and fed into the network. LiDAR is a sensing technology used in many AVs, and its utilization allows the proposed algorithm to be easily adapted and applied in real-world scenarios.
-\begin{figure}[h!]
+\paragraph We propose a straightforward neural network architecture, specifically a Multilayer Perceptron (MLP), with 2 hidden layers each having a size of 256 neurons as we can see in~\Cref{fig:beta-policy}. This neural network is then divided into two separate channels, each having a hidden layer with 256 neurons. These channels are designed to predict values for steering angle and acceleration, respectively, in order to control the vehicle.
+\begin{figure}[H]
     \centering
-    \includegraphics[width=12cm]{assets/beta_policy}
+    \includegraphics[width=10cm]{assets/beta_policy}
     \caption{Beta Policy}\label{fig:beta-policy}
 \end{figure}
-
+\paragraph The implementation of the neural network is carried out using PyTorch~\cite{paszke2019pytorch}, a popular deep learning library. The input to the network~\Cref{fig:beta-policy} consists of ego states, which include relevant information about the vehicle in relation to its environment, such as velocity, checkpoint positions, time, and distance to the destination. Additionally, LiDAR data from the left, right, and front sides of the vehicle is collected and fed into the network. LiDAR is a sensing technology used in many AVs, and its utilization allows the proposed algorithm to be easily adapted and applied in real-world scenarios.
 The final layer that output these values uses softplus
 activation function and 1 is added to make sure that the output
 is always positive. The final layer is $f(x) = 1 + \log (1 +
@@ -127,19 +125,20 @@ It should be noted that we only consider the case where $\alpha > 1$ and $\beta 
 
 \section{Advantage Function (Experience Sharing)}\label{sec:advantage-function}
 \paragraph The advantage function is a key component of the policy gradient method.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=8cm]{assets/advantage_fun}
+    \caption{$Q$ value Approximator (Critics)}\label{fig:figure4}
+\end{figure}
 It is used to estimate the advantage of taking an action $a$ in state $s$ over taking an action sampled from the policy $\pi$ in state $s$.
 The advantage function is defined as:
 \begin{equation}
     A^{\pi_{\theta_{k}}}(s_{t},s_{t+1}, A_{j}, A_{j+1}, R_{G}) = R_{G} +  Q(s_{t+1}, A_{j+1}) - Q(s_{t}, A_{j})\label{eq:equation7}
 \end{equation}
-where $R_{G}$ is the global reward defined as $R_{G} = \frac{1}{k} \sum_{i=0}^{k}R_{k} $
-whose $k$ is the individual reward calculated by Monte Carlo Method~\cite{sutton2018reinforcement}.  $Q(\star)$ is the critics part which is popularized by Asynchronous Advantage Actor Critic (A3C)~\cite{mnih2016asynchronous} and also adopted by PPO~\cite{schulman2017proximal}
+where $R_{G}$ is the global reward defined as $R_{G} = \frac{1}{T} \sum_{t=0}^{T}R_{k} $
+whose $k$ is the individual reward calculated by Monte Carlo Method~\cite{sutton2018reinforcement}, $T$ is the total number of agents.  $Q(\star)$ is the critics part which is popularized by Asynchronous Advantage Actor Critic (A3C)~\cite{mnih2016asynchronous} and also adopted by PPO~\cite{schulman2017proximal}
 , $Q(s_{t}, A_{j})$ is the Q-value of taking action $A_{j}$ in state $s_{t}$, and $A_{j+1}$ is the action sampled from the policy $\pi$ in state $s_{t+1}$.
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=10cm]{assets/advantage_fun}
-    \caption{$Q$ value Approximator (Critics)}\label{fig:figure4}
-\end{figure}
+A 3 layers multi perception layers (MLP) with 256 neurons each is used to approximate the $Q$ value as we can see in~\Cref{fig:figure4}.
 
 \section{Objective Function}\label{sec:objective-function}
 \paragraph The objective function is used to optimize the policy parameters $\theta$. The goal of the agent is to maximize the culminative reward over time by updating the parameterized policy with:
@@ -153,9 +152,10 @@ where $D_{k}$ is the set of trajectories collected by the agent at iteration $k$
         (1 - \epsilon) A^{\pi_{\theta_{k}}} & \text{otherwise}
     \end{cases}\label{eq:equation9}
 \end{equation}
-
-\section{Centralized Training and Decentralized Execution(CTDE)}\label{sec:centralized-training-and-decentralized-execution}
-CTDE starts with several agents being placed in the
+where $\epsilon$ is a hyperparameter that controls the magnitude of the update.
+\pagebreak
+\section{Centralized Training and Decentralized Execution}\label{sec:centralized-training-and-decentralized-execution}
+\paragraph CTDE~\Cref{fig:ctde} starts with several agents being placed in the
 environment. The agents are allowed to run for several
 predefined steps (2000 timestamps in our case). In the process,
 samples are collected in a rollout buffer, the buffer then
@@ -166,8 +166,8 @@ fed into the central agent's actor-critics network to update the
 policy by calculating loss and through back propagation.
 The updated policy is then distributed back to the individual agent.
 The cycle repeats until the reward feedback converges.
-\begin{figure}[!h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{assets/clde}
-    \caption{Centralized Training and Decentralized Execution}\label{fig:figure5}
+    \caption{Centralized Training and Decentralized Execution}\label{fig:ctde}
 \end{figure}

@@ -1,18 +1,18 @@
-\babel@toc {english}{}\relax 
+\babel@toc {nil}{}\relax 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Gym-graph-traffic Simulator}}{24}{}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces highway-env Simulator}}{26}{}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces MetaDrive Simulator}}{28}{}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Gym-graph-traffic Simulator}}{23}{}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces highway-env Simulator}}{25}{}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces MetaDrive Simulator}}{26}{}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Normal Distribution}}{33}{}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Beta Distribution}}{36}{}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Beta Policy}}{37}{}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces $Q$ value Approximator (Critics)}}{38}{}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Centralized Training and Decentralized Execution}}{39}{}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Normal Distribution}}{31}{}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Beta Distribution}}{33}{}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Beta Policy}}{34}{}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces $Q$ value Approximator (Critics)}}{35}{}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Centralized Training and Decentralized Execution}}{37}{}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Comparision of single agent traning}}{43}{}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Comparision of single agent traning by average success rate}}{44}{}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Comparision of single agent traning by average safety rate}}{45}{}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Comparision of multi-agent traning by average reward}}{46}{}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Comparision of single agent traning}}{41}{}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Comparision of single agent traning by average success rate}}{42}{}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Comparision of single agent traning by average safety rate}}{42}{}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Comparision of multi-agent traning by average reward}}{43}{}%
 \addvspace {10\p@ }
